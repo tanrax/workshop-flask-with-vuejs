@@ -1,5 +1,9 @@
+import os
 from flask import Flask
 from flask_restplus import Resource, Api
+from dotenv import load_dotenv, find_dotenv
+
+load_dotenv(find_dotenv())
 
 app = Flask(__name__)
 api = Api(app)
@@ -55,5 +59,5 @@ class Comments(Resource):
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=os.environ.get('DEBUG') == 'True' if True else False)
 
