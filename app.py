@@ -1,11 +1,20 @@
+# -*- coding: utf-8 -*-
+# Librarys
 import os
 from flask import Flask
 from flask_restplus import Resource, Api
 from dotenv import load_dotenv, find_dotenv
+from models import db, User, News, Comment
 
 load_dotenv(find_dotenv())
 
+
 app = Flask(__name__)
+
+# Config Flask
+app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
+
+# Config API
 api = Api(app)
 PRE_URL = '/api/v1/'
 
@@ -32,10 +41,11 @@ class Logout(Resource):
 
 
 @api.route(PRE_URL + 'news')
-class News(Resource):
+class News_all(Resource):
 
     def get(self):
-        return {'hello': 'world'}
+        my_news = News.query.all()
+        return ([i.serialize for i in my_news])
 
     def post(self):
         return {'hello': 'world'}

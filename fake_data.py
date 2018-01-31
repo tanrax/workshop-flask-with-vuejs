@@ -1,0 +1,48 @@
+from werkzeug.security import generate_password_hash
+from models import db, User, News, Comment
+from faker import Factory
+from random import randint
+
+# Spanish
+fake = Factory.create('es_ES')
+
+# Reload tables
+db.drop_all()
+db.create_all()
+
+# Make 100 fake users
+for num in range(100):
+    profile = fake.simple_profile()
+    username = profile['username']
+    mail = profile['mail']
+    password = generate_password_hash('123')
+    # Save in database
+    my_user = User(username=username, mail=mail, password=password)
+    db.session.add(my_user)
+
+print('Users created')
+
+# Make 1000 fake news
+for num in range(1000):
+    title = fake.sentence()
+    link = fake.uri()
+    user_id = randint(1, 100)
+    # Save in database
+    my_news = News(title=title, link=link, user_id=user_id)
+    db.session.add(my_news)
+
+print('News created')
+
+# Make 10000 fake comments
+for num in range(10000):
+    text = fake.text()
+    news_id = randint(1, 1000)
+    user_id = randint(1, 100)
+    # Save in database
+    my_comment = Comment(text=text, news_id=news_id, user_id=user_id)
+    db.session.add(my_comment)
+
+print('Comments created')
+
+# Save
+db.session.commit()
