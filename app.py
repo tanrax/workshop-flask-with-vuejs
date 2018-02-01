@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # Librarys
 import os
-from flask import Flask
+from flask import Flask, jsonify
 from flask_restplus import Resource, Api
 from dotenv import load_dotenv, find_dotenv
 from models import db, User, News, Comment
@@ -13,6 +13,11 @@ app = Flask(__name__)
 
 # Config Flask
 app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
+
+# Config Database
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URI')
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+db.init_app(app)
 
 # Config API
 api = Api(app)
@@ -41,11 +46,11 @@ class Logout(Resource):
 
 
 @api.route(PRE_URL + 'news')
-class News_all(Resource):
+class NewsList(Resource):
 
     def get(self):
         my_news = News.query.all()
-        return ([i.serialize for i in my_news])
+        return jsonify([i.serialize for i in my_news])
 
     def post(self):
         return {'hello': 'world'}
