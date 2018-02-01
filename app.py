@@ -1,26 +1,26 @@
 # -*- coding: utf-8 -*-
+
 # Librarys
+# =========================
 import os
-from flask import Flask, jsonify
+from flask import Flask, jsonify, request
 from flask_restplus import Resource, Api
 from dotenv import load_dotenv, find_dotenv
 from models import db, User, News, Comment
 
+# Extensions initialization
+# =========================
 load_dotenv(find_dotenv())
-
-
 app = Flask(__name__)
+api = Api(app)
 
-# Config Flask
+
+# Configurations
+# =========================
 app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
-
-# Config Database
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URI')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db.init_app(app)
-
-# Config API
-api = Api(app)
 PRE_URL = '/api/v1/'
 
 
@@ -50,10 +50,10 @@ class NewsList(Resource):
 
     def get(self):
         my_news = News.query.all()
-        return jsonify([i.serialize for i in my_news])
+        return serializeQuery(my_news)
 
     def post(self):
-        return {'hello': 'world'}
+        return request.form
 
 
 @api.route(PRE_URL + 'news/<int:id>')
@@ -71,6 +71,10 @@ class Comments(Resource):
 
     def post(self, id):
         return {'hello': 'world'}
+
+
+def serializeQuery(query):
+    return jsonify([i.serialize for i in query])
 
 
 if __name__ == '__main__':
