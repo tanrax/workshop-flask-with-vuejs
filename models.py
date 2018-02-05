@@ -45,7 +45,9 @@ class News(db.Model):
     '''
     Table News
     '''
+
     __tablename__ = 'news'
+
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(100))
     link = db.Column(db.String(500))
@@ -58,16 +60,6 @@ class News(db.Model):
     user = db.relationship(
         'User', backref=db.backref('News', lazy=True))
 
-    @property
-    def serialize(self):
-        """Return object data in easily serializeable format"""
-        return {
-           'id': self.id,
-           'title': self.title,
-           'link': self.link,
-           'user_id': self.user_id
-        }
-
     def __repr__(self):
         return '<News Table {0}>'.format(self.title)
 
@@ -76,7 +68,9 @@ class Comment(db.Model):
     '''
     Table Comment
     '''
+
     __tablename__ = 'comments'
+
     id = db.Column(db.Integer, primary_key=True)
     text = db.Column(db.String(1000))
     news_id = db.Column(
