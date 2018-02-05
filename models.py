@@ -41,9 +41,9 @@ class User(db.Model):
         return '<User Table {0}>'.format(self.username)
 
 
-class News(db.Model):
+class Notice(db.Model):
     '''
-    Table News
+    Table Notice
     '''
 
     __tablename__ = 'news'
@@ -58,10 +58,10 @@ class News(db.Model):
 
     # Relations
     user = db.relationship(
-        'User', backref=db.backref('News', lazy=True))
+        'User', backref=db.backref('Notice', lazy=True))
 
     def __repr__(self):
-        return '<News Table {0}>'.format(self.title)
+        return '<Notice Table {0}>'.format(self.title)
 
 
 class Comment(db.Model):
@@ -73,7 +73,7 @@ class Comment(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     text = db.Column(db.String(1000))
-    news_id = db.Column(
+    notice_id = db.Column(
         db.Integer, db.ForeignKey('news.id'), nullable=False)
     user_id = db.Column(
         db.Integer, db.ForeignKey('users.id'), nullable=False)
@@ -83,8 +83,8 @@ class Comment(db.Model):
     # Relations
     user = db.relationship(
         'User', backref=db.backref('Comment', lazy=True))
-    news = db.relationship(
-        'News', backref=db.backref('Comment', lazy=True))
+    notice = db.relationship(
+        'Notice', backref=db.backref('Comment', lazy=True))
 
     def __repr__(self):
         return '<Comment Table {0}>'.format(self.id)
