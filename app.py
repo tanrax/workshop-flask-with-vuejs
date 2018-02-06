@@ -47,7 +47,7 @@ users_schema = UserSchema(many=True)
 class NoticeSchema(ma.Schema):
     class Meta:
         # Fields to expose
-        fields = ('title', 'link', 'user_id', '_links')
+        fields = ('title', 'url', 'user_id', '_links')
 
     _links = ma.Hyperlinks({
         'comments': ma.URLFor('comments', id='<id>'),
