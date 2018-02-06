@@ -3,10 +3,10 @@
 # =========================
 # Librarys
 # =========================
+from dotenv import load_dotenv, find_dotenv
 import os
 from flask import Flask, request
 from flask_restplus import Resource, Api
-from dotenv import load_dotenv, find_dotenv
 from models import db, User, Notice, Comment
 from flask_marshmallow import Marshmallow
 
@@ -196,7 +196,8 @@ class NewsSingle(Resource):
                 db.session.commit()
             except Exception as e:
                 db.session.rollback()
-                return {'message': 'No se ha podido guardar la información'}, 500
+                return {
+                    'message': 'No se ha podido guardar la información'}, 500
         else:
             return {'message': 'No existe la noticia'}, 400
         return {'message': 'ok'}, 200
