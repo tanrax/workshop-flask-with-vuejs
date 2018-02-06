@@ -50,7 +50,7 @@ class Notice(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(100))
-    link = db.Column(db.String(500))
+    url = db.Column(db.String(500))
     user_id = db.Column(
         db.Integer, db.ForeignKey('users.id'), nullable=False)
     created_at = db.Column(
@@ -58,7 +58,7 @@ class Notice(db.Model):
 
     # Relations
     user = db.relationship(
-        'User', backref=db.backref('Notice', lazy=True))
+        'User', backref=db.backref('Notice', lazy=True, cascade="all, delete-orphan"))
 
     def __repr__(self):
         return '<Notice Table {0}>'.format(self.title)
@@ -82,9 +82,9 @@ class Comment(db.Model):
 
     # Relations
     user = db.relationship(
-        'User', backref=db.backref('Comment', lazy=True))
+        'User', backref=db.backref('Comment', lazy=True, cascade="all, delete-orphan"))
     notice = db.relationship(
-        'Notice', backref=db.backref('Comment', lazy=True))
+        'Notice', backref=db.backref('Comment', lazy=True, cascade="all, delete-orphan"))
 
     def __repr__(self):
         return '<Comment Table {0}>'.format(self.id)

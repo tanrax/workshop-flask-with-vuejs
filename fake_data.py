@@ -25,10 +25,10 @@ print('Users created')
 # Make 1000 fake news
 for num in range(1000):
     title = fake.sentence()
-    link = fake.uri()
+    url = fake.uri()
     user_id = randint(1, 100)
     # Save in database
-    my_notice = Notice(title=title, link=link, user_id=user_id)
+    my_notice = Notice(title=title, url=url, user_id=user_id)
     db.session.add(my_notice)
 
 print('News created')

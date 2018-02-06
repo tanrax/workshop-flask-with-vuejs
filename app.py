@@ -85,7 +85,7 @@ comments_schema = CommentSchema(many=True)
 class Signup(Resource):
 
     def post(self):
-        return {'hello': 'world'}
+        return {'message': 'ok'}
 
 
 # Login
@@ -93,7 +93,7 @@ class Signup(Resource):
 class Login(Resource):
 
     def post(self):
-        return {'hello': 'world'}
+        return {'message': 'ok'}
 
 
 # Logout
@@ -101,7 +101,7 @@ class Login(Resource):
 class Logout(Resource):
 
     def get(self):
-        return {'hello': 'world'}
+        return {'message': 'ok'}
 
 
 # User
@@ -117,8 +117,11 @@ class UserList(Resource):
 class UserSingle(Resource):
 
     def get(self, id):
-        all_users = User.query.get(id)
-        return user_schema.jsonify(all_users)
+        my_user = User.query.get(id)
+        if my_user:
+            return user_schema.jsonify(my_user)
+        else:
+            return {'message': 'No existe el usuario'}, 400
 
 
 # Notice
@@ -130,7 +133,25 @@ class NoticeList(Resource):
         return news_schema.jsonify(my_news)
 
     def post(self):
-        return request.form
+        json_data = request.get_json()
+        if not json_data:
+            return {'message': 'Datos inválidos'}, 400
+        # Validations
+        try:
+            title = json_data['title']
+            url = json_data['url']
+            user_id = json_data['user_id']
+        except Exception as e:
+            return {'message': 'No existen los campos necesarios'}, 400
+        # Save data
+        my_notice = Notice(title=title, url=url, user_id=user_id)
+        db.session.add(my_notice)
+        try:
+            db.session.commit()
+        except Exception as e:
+            db.session.rollback()
+            return {'message': 'No se ha podido guardar la información'}, 500
+        return {'message': 'ok'}, 200
 
 
 @api.route(PRE_URL + 'notice/<int:id>')
@@ -140,13 +161,45 @@ class NewsSingle(Resource):
         my_notice = Notice.query.get(id)
         return notice_schema.jsonify(my_notice)
 
-    def path(self, id):
+    def patch(self, id):
         my_notice = Notice.query.get(id)
-        return notice_schema.jsonify(my_notice)
+        if not my_notice:
+            return {'message': 'No existe la noticia'}, 400
+        json_data = request.get_json()
+        if not json_data:
+            return {'message': 'Datos inválidos'}, 400
+        # Validations
+        try:
+            title = json_data['title']
+            url = json_data['url']
+            user_id = json_data['user_id']
+        except Exception as e:
+            return {'message': 'No existen los campos necesarios'}, 400
+        # Update data
+        my_notice.title = title
+        my_notice.url = url
+        my_notice.user_id = user_id
+        db.session.add(my_notice)
+        try:
+            db.session.commit()
+        except Exception as e:
+            db.session.rollback()
+            return {'message': 'No se ha podido guardar la información'}, 500
+        return {'message': 'ok'}, 200
 
     def delete(self, id):
         my_notice = Notice.query.get(id)
-        return notice_schema.jsonify(my_notice)
+        if my_notice:
+            db.session.delete(my_notice)
+            db.session.commit()
+            try:
+                db.session.commit()
+            except Exception as e:
+                db.session.rollback()
+                return {'message': 'No se ha podido guardar la información'}, 500
+        else:
+            return {'message': 'No existe la noticia'}, 400
+        return {'message': 'ok'}, 200
 
 
 # Comment
@@ -166,4 +219,3 @@ class Comments(Resource):
 # =========================
 if __name__ == '__main__':
     app.run(debug=True if os.environ.get('DEBUG') == 'True' else False)
-
