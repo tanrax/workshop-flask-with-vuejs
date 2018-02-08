@@ -1,5 +1,7 @@
 # Taller de API Rest con Flask y VueJS en armonia
 
+![Flask y Vuejs](flaskyvuejs.jpg)
+
 ## Necesitaremos
 
 - Portátil, y tuyo.
@@ -11,7 +13,7 @@
 
 ## ¿Bibliotecas?
 
-### Microframework
+### Microframework Web
 
 - **Flask**
 
@@ -32,6 +34,13 @@
 
 - **httpie**: Cliente de API Rest para pruebas.
 - **python-dotenv**: Implementación de un archivo de configuración.
+
+### Instalación
+
+```bash
+pipenv install flask Flask-SQLAlchemy Flask-Migrate Flask-script Faker 
+```
+
 
 ## Peticiones
 
