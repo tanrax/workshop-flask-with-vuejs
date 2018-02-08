@@ -1,17 +1,80 @@
-# Taller de API Rest con Flask con VueJS
+# Taller de API Rest con Flask y VueJS en armonia
+
+## Necesitaremos
+
+- Portátil, y tuyo.
+- Python 3.5> 
+- Internet superior a 56k
+- Editor de texto enriquecido y con fundamento.
+- [httpie](https://httpie.org/)
+- [pipenv](https://docs.pipenv.org/)
+
+## ¿Bibliotecas?
+
+### Microframework
+
+- **Flask**
+
+### Base de datos
+
+- **Flask-SQLAlchemy**: ORM
+- **Flask-Migrate**: Añade herramientas para gestionar nuestra base de datos.
+- **Flask-Script**: Creación de comandos personalizados
+- **Faker**: Generador de información falsa
+
+### API Rest
+
+- **Flask-restplus**: Nos ayuda con las peticiones y autodocumentación
+- **Flask-JWT**: Identificación básica.
+- **Flask-marshmallow**: Convertirá los objetos ORM en JSON.
+
+### Herramientas de desarrollo
+
+- **httpie**: Cliente de API Rest para pruebas.
+- **python-dotenv**: Implementación de un archivo de configuración.
 
 ## Peticiones
 
-Instalamos [httpie](https://httpie.org/)
-
 ### GET
 
+```bash
 http GET localhost:5000/api/v1/user
+```
 
-http GET localhost:5000/api/v1/user/1
+```bash
+http GET localhost:5000/api/v1/user/{id}
+```
 
+```bash
 http GET localhost:5000/api/v1/notice
+```
 
-http GET localhost:5000/api/v1/notice/1
+```bash
+http GET localhost:5000/api/v1/notice/{id}
+```
 
-http GET localhost:5000/api/v1/notice/1/comments
+```bash
+http GET localhost:5000/api/v1/notice/{id}/comments
+```
+
+### POST
+
+```bash
+http GET localhost:5000/api/v1/notice
+```
+
+```bash
+http GET localhost:5000/api/v1/notice/{id}/comments
+```
+
+### PATCH
+
+```bash
+http GET localhost:5000/api/v1/notice/{id}
+```
+
+### DELETE
+
+```bash
+http GET localhost:5000/api/v1/notice/{id}
+```
