@@ -94,7 +94,7 @@ http GET localhost:5000/api/v1/notice/{id}
 
 ## ¡Pista para programadores!
 
-Para seguir el taller sin perderte puedes ir saltando a los checkpoints de la siguiente manera.
+Para seguir el taller sin perderte puedes ir saltando a los 🎈checkpoints🎈 de la siguiente manera.
 
 ```bash
 git checkout tema1-1
