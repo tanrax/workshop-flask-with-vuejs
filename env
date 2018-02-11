@@ -1,3 +1,0 @@
-DEBUG=True
-DATABASE_URI='sqlite:///database.sqlite'
-SECRET_KEY='my secret'
