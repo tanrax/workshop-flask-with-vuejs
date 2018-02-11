@@ -90,6 +90,14 @@ http GET localhost:5000/api/v1/notice/{id}
 
 ## ¿Empezamos?
 
+[Tema 1 Paso 1](https://github.com/tanrax/workshop-flask-with-vuejs/tree/tema1-1)
+
+## ¡Pista para programadores!
+
+Para seguir el taller sin perderte puedes ir saltando a los checkpoints de la siguiente manera.
+
 ```bash
 git checkout tema1-1
 ```
+
+
