@@ -87,3 +87,9 @@ http GET localhost:5000/api/v1/notice/{id}
 ```bash
 http GET localhost:5000/api/v1/notice/{id}
 ```
+
+## ¿Empezamos?
+
+```bash
+git checkout tema1-1
+```
