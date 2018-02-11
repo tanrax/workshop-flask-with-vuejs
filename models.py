@@ -1,14 +1,17 @@
 # -*- coding: utf-8 -*-
 # Librarys
 import os
+from os.path import join, dirname
 from flask import Flask
 from datetime import datetime
 from flask_sqlalchemy import SQLAlchemy
 from flask_script import Manager
 from flask_migrate import Migrate, MigrateCommand
-from dotenv import load_dotenv, find_dotenv
+from dotenv import load_dotenv
 
-load_dotenv(find_dotenv())
+dotenv_path = join(dirname(__file__), 'env')
+load_dotenv(dotenv_path)
+
 
 app = Flask(__name__)
 
@@ -58,7 +61,11 @@ class Notice(db.Model):
 
     # Relations
     user = db.relationship(
-        'User', backref=db.backref('Notice', lazy=True, cascade="all, delete-orphan"))
+        'User',
+        backref=db.backref(
+            'Notice',
+            lazy=True,
+            cascade="all, delete-orphan"))
 
     def __repr__(self):
         return '<Notice Table {0}>'.format(self.title)
@@ -82,9 +89,13 @@ class Comment(db.Model):
 
     # Relations
     user = db.relationship(
-        'User', backref=db.backref('Comment', lazy=True, cascade="all, delete-orphan"))
-    notice = db.relationship(
-        'Notice', backref=db.backref('Comment', lazy=True, cascade="all, delete-orphan"))
+        'User',
+        backref=db.backref(
+            'Comment',
+            lazy=True,
+            cascade="all, delete-orphan"))
+    notice = db.relationship('Notice', backref=db.backref(
+        'Comment', lazy=True, cascade="all, delete-orphan"))
 
     def __repr__(self):
         return '<Comment Table {0}>'.format(self.id)

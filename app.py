@@ -3,8 +3,9 @@
 # =========================
 # Librarys
 # =========================
-from dotenv import load_dotenv, find_dotenv
 import os
+from os.path import join, dirname
+from dotenv import load_dotenv
 from flask import Flask, request
 from flask_restplus import Resource, Api
 from models import db, User, Notice, Comment
@@ -13,7 +14,8 @@ from flask_marshmallow import Marshmallow
 # =========================
 # Extensions initialization
 # =========================
-load_dotenv(find_dotenv())
+dotenv_path = join(dirname(__file__), 'env')
+load_dotenv(dotenv_path)
 app = Flask(__name__)
 ma = Marshmallow(app)
 api = Api(app)
