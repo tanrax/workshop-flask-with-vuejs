@@ -1,21 +1,17 @@
-from flask import Flask, jsonify, request
+from flask import Flask
 
 app = Flask(__name__)
 app.config['DEBUG'] = True
 
-lista_compra = {'comida': ['pitón', 'chocolate', 'mayonesa']}
+
+@app.route("/")
+def hello():
+    return 'Hola Python Valencia!'
 
 
-@app.route("/lista")
-def lista():
-    return jsonify(lista_compra)
-
-
-@app.route("/lista", methods=('POST',))
-def lista_post():
-    data = request.get_json()
-    lista_compra['comida'].append(data['nueva'])
-    return jsonify(lista_compra)
+@app.route("/adios")
+def bye():
+    return 'Me voy que tengo prisa.'
 
 
 if __name__ == "__main__":
