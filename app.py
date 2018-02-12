@@ -22,7 +22,6 @@ app = Flask(__name__)
 app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
 app.config['DEBUG'] = True if os.environ.get('DEBUG') == 'True' else False
 
-PRE_URL = '/api/v1/'
 api = Api(app)
 
 
@@ -31,28 +30,21 @@ api = Api(app)
 # =========================
 
 
-# Signup
-@api.route(PRE_URL + 'signup')
-class Signup(Resource):
-
-    def post(self):
-        return {'message': 'signup'}
-
-
-# Login
-@api.route(PRE_URL + 'login')
-class Login(Resource):
-
-    def post(self):
-        return {'message': 'login'}
-
-
-# Logout
-@api.route(PRE_URL + 'logout')
-class Logout(Resource):
+# User
+@api.route('/user')
+class User(Resource):
 
     def get(self):
-        return {'message': 'logout'}
+        return {'message': 'te doy info del user'}
+
+    def post(self):
+        return {'message': 'te hago un nuevo un user'}
+
+    def patch(self):
+        return {'message': 'te actualizo un user'}
+
+    def delete(self):
+        return {'message': 'te borro un user'}
 
 
 if __name__ == "__main__":

@@ -15,22 +15,26 @@ Convertimos Flask en un API Rest con Flask-restplus
 ### Peticiones
 
 ```bash 
-http POST :5000/api/v1/login
+http GET :5000/user
 ```
 
 ```bash 
-http POST :5000/api/v1/signup
+http POST :5000/user
 ```
 
 ```bash 
-http GET :5000/api/v1/logout
+http PATCH :5000/user
+```
+
+```bash 
+http DELETE :5000/user
 ```
 
 
 ### Siguiente
 
-[Tema 2 Paso 1](https://github.com/tanrax/workshop-flask-with-vuejs/tree/tema2-1)
+[Tema 2 Paso 2](https://github.com/tanrax/workshop-flask-with-vuejs/tree/tema2-2)
 
 ### Anterior
 
-[Tema 1 Paso 3](https://github.com/tanrax/workshop-flask-with-vuejs/tree/tema1-3)
+[Tema 1 Paso 3](https://github.com/tanrax/workshop-flask-with-vuejs/tree/tema2-1)
