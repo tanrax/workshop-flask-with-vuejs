@@ -1,25 +1,36 @@
 # Taller de API Rest con Flask y VueJS en armonia
 
-## Tema 1 - Paso 3
+## Tema 2 - Paso 1
 
 ### 🎈Checkpoint🎈
 
 ```bash
-git checkout tema1-3
+git checkout tema2-1
 ```
 
 ### Descripción
 
-Integramos un archivo de configuración
+Convertimos Flask en un API Rest con Flask-restplus
 
 ### Peticiones
 
-Ninguna
+```bash 
+http POST :5000/api/v1/login
+```
+
+```bash 
+http POST :5000/api/v1/signup
+```
+
+```bash 
+http GET :5000/api/v1/logout
+```
+
 
 ### Siguiente
 
-[Tema 1 Paso 4](https://github.com/tanrax/workshop-flask-with-vuejs/tree/tema1-4)
+[Tema 2 Paso 1](https://github.com/tanrax/workshop-flask-with-vuejs/tree/tema2-1)
 
 ### Anterior
 
-[Tema 1 Paso 2](https://github.com/tanrax/workshop-flask-with-vuejs/tree/tema1-2)
+[Tema 1 Paso 3](https://github.com/tanrax/workshop-flask-with-vuejs/tree/tema1-3)

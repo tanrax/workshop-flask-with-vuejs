@@ -7,6 +7,7 @@ import os
 from os.path import join, dirname
 from dotenv import load_dotenv
 from flask import Flask
+from flask_restplus import Resource, Api
 
 # =========================
 # Extensions initialization
@@ -21,15 +22,37 @@ app = Flask(__name__)
 app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
 app.config['DEBUG'] = True if os.environ.get('DEBUG') == 'True' else False
 
-# Alternativa
-# https://github.com/direnv/direnv
-
-app = Flask(__name__)
+PRE_URL = '/api/v1/'
+api = Api(app)
 
 
-@app.route("/")
-def hello():
-    return 'Hola Python Valencia!'
+# =========================
+# Routes
+# =========================
+
+
+# Signup
+@api.route(PRE_URL + 'signup')
+class Signup(Resource):
+
+    def post(self):
+        return {'message': 'signup'}
+
+
+# Login
+@api.route(PRE_URL + 'login')
+class Login(Resource):
+
+    def post(self):
+        return {'message': 'login'}
+
+
+# Logout
+@api.route(PRE_URL + 'logout')
+class Logout(Resource):
+
+    def get(self):
+        return {'message': 'logout'}
 
 
 if __name__ == "__main__":
