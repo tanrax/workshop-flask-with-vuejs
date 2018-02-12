@@ -17,7 +17,7 @@ load_dotenv(dotenv_path)
 app = Flask(__name__)
 
 # =========================
-# Extensions initialization
+# Variables
 # =========================
 app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
 app.config['DEBUG'] = True if os.environ.get('DEBUG') == 'True' else False
