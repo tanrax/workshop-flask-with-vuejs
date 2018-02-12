@@ -21,6 +21,9 @@ app = Flask(__name__)
 app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
 app.config['DEBUG'] = True if os.environ.get('DEBUG') == 'True' else False
 
+# Alternativa
+# https://github.com/direnv/direnv
+
 app = Flask(__name__)
 
 
