@@ -100,4 +100,17 @@ Para seguir el taller sin perderte puedes ir saltando a los 🎈checkpoints🎈 
 git checkout tema1-1
 ```
 
-
+## Indice
+- Tema 1: Conocemos Flask
+    - [1-1 Hola Flask](https://github.com/tanrax/workshop-flask-with-vuejs/tree/tema1-1)
+    - [1-2 Hola API Rest](https://github.com/tanrax/workshop-flask-with-vuejs/tree/tema1-2)
+    - [1-3 Preparamos proyecto](https://github.com/tanrax/workshop-flask-with-vuejs/tree/tema1-3)
+- Tema 2: Integramos API Rest
+    - [2-1 Hola Flask-restplus](https://github.com/tanrax/workshop-flask-with-vuejs/tree/tema2-1)
+    - [2-2 Primeras llamadas](https://github.com/tanrax/workshop-flask-with-vuejs/tree/tema2-2)
+- Tema 3: Integramos base de datos
+    - [3-1 ORM con SQLAlchemy](https://github.com/tanrax/workshop-flask-with-vuejs/tree/tema3-1)
+    - [3-2 Migraciones](https://github.com/tanrax/workshop-flask-with-vuejs/tree/tema3-2)
+    - [3-3 Generando información para desarrollo](https://github.com/tanrax/workshop-flask-with-vuejs/tree/tema3-3)
+    - [3-4 Primer esquema](https://github.com/tanrax/workshop-flask-with-vuejs/tree/tema3-4)
+    - [3-5 Todos los esquemas](https://github.com/tanrax/workshop-flask-with-vuejs/tree/tema3-5)
