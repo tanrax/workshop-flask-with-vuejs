@@ -1,11 +1,11 @@
 # Taller de API Rest con Flask y VueJS en armonia
 
-## Tema 2 - Paso 1
+## Tema 2 - Paso 2
 
 ### 🎈Checkpoint🎈
 
 ```bash
-git checkout tema2-1
+git checkout tema2-2
 ```
 
 ### Descripción
@@ -29,8 +29,8 @@ http GET :5000/api/v1/logout
 
 ### Siguiente
 
-[Tema 2 Paso 1](https://github.com/tanrax/workshop-flask-with-vuejs/tree/tema2-1)
+[Tema 2 Paso 3](https://github.com/tanrax/workshop-flask-with-vuejs/tree/tema2-3)
 
 ### Anterior
 
-[Tema 1 Paso 3](https://github.com/tanrax/workshop-flask-with-vuejs/tree/tema1-3)
+[Tema 2 Paso 1](https://github.com/tanrax/workshop-flask-with-vuejs/tree/tema2-1)
