@@ -1,94 +1,82 @@
 # Taller de API Rest con Flask y VueJS en armonia
 
-## Tema 3 - Paso 1
+## Tema 3 - Paso 2
 
 ### 🎈Checkpoint🎈
 
 ```bash
-git checkout tema3-1
+git checkout tema3-2
 ```
 
 ### Descripción
 
-Conectamos la base de datos con Flask con Flask-SQLAlchemy
+Implementamos un sistema de migraciones.
 
 ### Peticiones
 
-Creamos un usuario.
+#### Flask-migrate
 
-```python 
-from models import db, User
-my_user = User()
-my_user.username = 'Juana'
-my_user.mail = 'juana@arco.fr'
-my_user.password = 'noinglaterra'
-db.session.add(my_user)
-db.session.commit()
-```
+models.py
 
-Listamos todos.
+```python
+from flask import Flask
+from flask_sqlalchemy import SQLAlchemy
+from flask_migrate import Migrate
 
-```python 
-from models import db, User
-my_users = User.query.all()
-```
+app = Flask(__name__)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.sqlite'
 
-Obtenemos uno.
+db = SQLAlchemy(app)
+migrate = Migrate(app, db)
 
-```python 
-from models import db, User
-my_users = User.query.get(1)
-```
-
-
-Actualizamos.
-
-```python 
-from models import db, User
-my_user = User.query.get(1)
-my_user.username = 'Simba'
-my_user.mail = 'rey@leon.af'
-my_user.password = 'Hakuna matata'
-db.session.add(my_user)
-db.session.commit()
-```
-
-Borramos.
-
-```python 
-from models import db, User
-my_user = User.query.get(1)
-db.session.delete(my_user)
-db.session.commit()
-```
-
-Definición de tablas.
-
-```python 
 class User(db.Model):
-    '''
-    Table user
-    '''
-
-    __tablename__ = 'users'
-
     id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(100))
-    mail = db.Column(db.String(200))
-    password = db.Column(db.String(106))
-
-    def __repr__(self):
-        return '<User Table {0}>'.format(self.username)
+    name = db.Column(db.String(128))
 ```
 
-```python 
-db.create_all()
+Iniciamos.
+
+```python
+python3 models.py db init
+```
+
+Creamos migración.
+
+```python
+python3 models.py db migrate
+```
+
+Actualizamos la base de datos.
+
+```python
+python3 models.py db upgrade
+```
+
+#### Flask-script
+
+```python
+from flask_script import Manager
+
+from myapp import app
+
+manager = Manager(app)
+
+@manager.command
+def hello():
+    print "hello"
+
+if __name__ == "__main__":
+    manager.run()
+```
+
+```python
+python3 manage.py hello
 ```
 
 ### Siguiente
 
-[Tema 3 Paso 2](https://github.com/tanrax/workshop-flask-with-vuejs/tree/tema3-2)
+[Tema 3 Paso 3](https://github.com/tanrax/workshop-flask-with-vuejs/tree/tema3-3)
 
 ### Anterior
 
-[Tema 2 Paso 3](https://github.com/tanrax/workshop-flask-with-vuejs/tree/tema2-3)
+[Tema 3 Paso 1](https://github.com/tanrax/workshop-flask-with-vuejs/tree/tema3-1)
