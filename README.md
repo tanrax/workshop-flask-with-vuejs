@@ -1,82 +1,74 @@
 # Taller de API Rest con Flask y VueJS en armonia
 
-## Tema 3 - Paso 2
+## Tema 3 - Paso 3
 
 ### 🎈Checkpoint🎈
 
 ```bash
-git checkout tema3-2
+git checkout tema3-3
 ```
 
 ### Descripción
 
-Implementamos un sistema de migraciones.
+Incluimos un script para generar información falsa para un desarrollo.
 
 ### Peticiones
 
-#### Flask-migrate
-
-models.py
-
 ```python
-from flask import Flask
-from flask_sqlalchemy import SQLAlchemy
-from flask_migrate import Migrate
+from werkzeug.security import generate_password_hash
+from models import db, User, Notice, Comment
+from faker import Factory
+from random import randint
 
-app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.sqlite'
+# Spanish
+fake = Factory.create('es_ES')
 
-db = SQLAlchemy(app)
-migrate = Migrate(app, db)
+# Reload tables
+db.drop_all()
+db.create_all()
 
-class User(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(128))
-```
+# Make 100 fake users
+for num in range(100):
+    profile = fake.simple_profile()
+    username = profile['username']
+    mail = profile['mail']
+    password = generate_password_hash('123')
+    # Save in database
+    my_user = User(username=username, mail=mail, password=password)
+    db.session.add(my_user)
 
-Iniciamos.
+print('Users created')
 
-```python
-python3 models.py db init
-```
+# Make 1000 fake news
+for num in range(1000):
+    title = fake.sentence()
+    url = fake.uri()
+    user_id = randint(1, 100)
+    # Save in database
+    my_notice = Notice(title=title, url=url, user_id=user_id)
+    db.session.add(my_notice)
 
-Creamos migración.
+print('News created')
 
-```python
-python3 models.py db migrate
-```
+# Make 10000 fake comments
+for num in range(10000):
+    text = fake.text()
+    notice_id = randint(1, 1000)
+    user_id = randint(1, 100)
+    # Save in database
+    my_comment = Comment(text=text, notice_id=notice_id, user_id=user_id)
+    db.session.add(my_comment)
 
-Actualizamos la base de datos.
+print('Comments created')
 
-```python
-python3 models.py db upgrade
-```
-
-#### Flask-script
-
-```python
-from flask_script import Manager
-
-from myapp import app
-
-manager = Manager(app)
-
-@manager.command
-def hello():
-    print "hello"
-
-if __name__ == "__main__":
-    manager.run()
-```
-
-```python
-python3 manage.py hello
+# Save
+db.session.commit()
 ```
 
 ### Siguiente
 
-[Tema 3 Paso 3](https://github.com/tanrax/workshop-flask-with-vuejs/tree/tema3-3)
+[Tema 3 Paso 4](https://github.com/tanrax/workshop-flask-with-vuejs/tree/tema3-4)
 
 ### Anterior
 
-[Tema 3 Paso 1](https://github.com/tanrax/workshop-flask-with-vuejs/tree/tema3-1)
+[Tema 3 Paso 2](https://github.com/tanrax/workshop-flask-with-vuejs/tree/tema3-2)
