@@ -65,6 +65,12 @@ print('Comments created')
 db.session.commit()
 ```
 
+Integrando con flask-script
+
+```python
+python3 models.py fake_data
+```
+
 ### Siguiente
 
 [Tema 3 Paso 4](https://github.com/tanrax/workshop-flask-with-vuejs/tree/tema3-4)

@@ -157,6 +157,8 @@ def fake_data():
 
     print('Comments created')
 
+    db.session.commit()
+
 
 if __name__ == "__main__":
     manager.run()
