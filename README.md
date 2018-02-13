@@ -108,7 +108,7 @@ git checkout tema1-1
 - Tema 2: Integramos API Rest
     - [2-1 Hola Flask-restplus](https://github.com/tanrax/workshop-flask-with-vuejs/tree/tema2-1)
     - [2-2 Primeras llamadas](https://github.com/tanrax/workshop-flask-with-vuejs/tree/tema2-2)
-    - [2-2 Completamos las peticiones](https://github.com/tanrax/workshop-flask-with-vuejs/tree/tema2-3)
+    - [2-3 Completamos las peticiones](https://github.com/tanrax/workshop-flask-with-vuejs/tree/tema2-3)
 - Tema 3: Integramos base de datos
     - [3-1 ORM con SQLAlchemy](https://github.com/tanrax/workshop-flask-with-vuejs/tree/tema3-1)
     - [3-2 Migraciones](https://github.com/tanrax/workshop-flask-with-vuejs/tree/tema3-2)
