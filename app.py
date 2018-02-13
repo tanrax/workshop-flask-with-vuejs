@@ -55,5 +55,58 @@ class Logout(Resource):
         return {'message': 'logout'}
 
 
+# User
+@api.route(PRE_URL + 'user')
+class UserList(Resource):
+
+    def get(self):
+        return 'user list GET'
+
+
+@api.route(PRE_URL + 'user/<int:id>')
+class UserSingle(Resource):
+
+    def get(self, id):
+        return 'user single GET'
+
+
+# Notice
+@api.route(PRE_URL + 'notice')
+class NoticeList(Resource):
+
+    def get(self):
+        return 'Notice list GET'
+
+    def post(self):
+        return 'Notice list POST'
+
+
+@api.route(PRE_URL + 'notice/<int:id>')
+class NewsSingle(Resource):
+
+    def get(self, id):
+        return 'Notice single GET'
+
+    def patch(self, id):
+        return 'Notice single PATCH'
+
+    def delete(self, id):
+        return 'Notice single DELETE'
+
+
+# Comment
+@api.route(PRE_URL + 'notice/<int:id>/comments')
+class Comments(Resource):
+
+    def get(self, id):
+        return 'Comments GET'
+
+    def post(self, id):
+        return 'Comments POST'
+
+
+# =========================
+# Run
+# =========================
 if __name__ == "__main__":
     app.run()
