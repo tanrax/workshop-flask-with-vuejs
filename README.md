@@ -16,7 +16,7 @@ Conectamos la base de datos con Flask con Flask-SQLAlchemy
 
 Creamos un usuario.
 
-```bash 
+```python 
 from models import db, User
 my_user = User()
 my_user.username = 'Juana'
@@ -28,14 +28,14 @@ db.session.commit()
 
 Listamos todos.
 
-```bash 
+```python 
 from models import db, User
 my_users = User.query.all()
 ```
 
 Obtenemos uno.
 
-```bash 
+```python 
 from models import db, User
 my_users = User.query.get(1)
 ```
@@ -43,7 +43,7 @@ my_users = User.query.get(1)
 
 Actualizamos.
 
-```bash 
+```python 
 from models import db, User
 my_user = User.query.get(1)
 my_user.username = 'Simba'
@@ -55,13 +55,35 @@ db.session.commit()
 
 Borramos.
 
-```bash 
+```python 
 from models import db, User
 my_user = User.query.get(1)
 db.session.delete(my_user)
 db.session.commit()
 ```
 
+Definición de tablas.
+
+```python 
+class User(db.Model):
+    '''
+    Table user
+    '''
+
+    __tablename__ = 'users'
+
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(100))
+    mail = db.Column(db.String(200))
+    password = db.Column(db.String(106))
+
+    def __repr__(self):
+        return '<User Table {0}>'.format(self.username)
+```
+
+```python 
+db.create_all()
+```
 
 ### Siguiente
 
@@ -69,4 +91,4 @@ db.session.commit()
 
 ### Anterior
 
-[Tema 2 Paso 2](https://github.com/tanrax/workshop-flask-with-vuejs/tree/tema2-2)
+[Tema 2 Paso 3](https://github.com/tanrax/workshop-flask-with-vuejs/tree/tema2-3)
