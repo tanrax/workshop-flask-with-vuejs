@@ -1,64 +1,29 @@
 # Taller de API Rest con Flask y VueJS en armonia
 
-## Tema 3 - Paso 4
+## Tema 3 - Paso 5
 
 ### 🎈Checkpoint🎈
 
 ```bash
-git checkout tema3-4
+git checkout tema3-5
 ```
 
 ### Descripción
 
-Convertimos nuestras consultas a la base de datos en JSON.
+Terminamos de definir todos los esquemas y creamos un simple CRUD de noticias.
 
 ### Peticiones
 
-```python
-from flask_marshmallow import Marshmallow
-ma = Marshmallow(app)
+Todas (ver master)
 
-class UserSchema(ma.Schema):
-    class Meta:
-        # Fields to expose
-        fields = ('username', 'mail')
-
-
-user_schema = UserSchema()
-users_schema = UserSchema(many=True)
-
-
-@api.route(PRE_URL + 'user')
-class UserList(Resource):
-
-    def get(self):
-        all_users = User.query.all()
-        return users_schema.jsonify(all_users)
-
-
-@api.route(PRE_URL + 'user/<int:id>')
-class UserSingle(Resource):
-
-    def get(self, id):
-        my_user = User.query.get(id)
-        if my_user:
-            return user_schema.jsonify(my_user)
-        else:
-            return {'message': 'No existe el usuario'}, 400
-```
-
-```python
-http GET :5000/api/v1/user/2
-```
-
-```python
-http GET :5000/api/v1/user
+```bash
+git checkout master
 ```
 
 ### Siguiente
 
-[Tema 3 Paso 5](https://github.com/tanrax/workshop-flask-with-vuejs/tree/tema3-5)
+[Tema 4 Paso 1](https://github.com/tanrax/workshop-flask-with-vuejs/tree/tema4-1)
 
 ### Anterior
 
-[Tema 3 Paso 3](https://github.com/tanrax/workshop-flask-with-vuejs/tree/tema3-3)
+[Tema 3 Paso 4](https://github.com/tanrax/workshop-flask-with-vuejs/tree/tema3-4)
