@@ -1,0 +1,9 @@
+flask
+flask-sqlalchemy
+Faker
+Flask-Migrate
+flask-restplus
+Flask-Script
+python-dotenv
+Flask-JWT
+Flask-marshmallow

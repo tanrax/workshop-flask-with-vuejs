@@ -56,7 +56,7 @@
 ### Instalación
 
 ```bash
-virtualenv --python=python3 venv
+python3 -m venv
 source venv/bin/activate
 git clone git@github.com:tanrax/workshop-flask-with-vuejs.git
 cd workshop-flask-with-vuejs
