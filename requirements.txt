@@ -7,3 +7,4 @@ Flask-Script
 python-dotenv
 Flask-JWT
 Flask-marshmallow
+marshmallow-sqlalchemy
