@@ -19,6 +19,12 @@
     - [3-5 CRUD y definiciones finales](https://github.com/tanrax/workshop-flask-with-vuejs/tree/tema3-5)
 - Tema 4: Vue-cli
     - [4-1 Hola Vue-cli](https://github.com/tanrax/workshop-flask-with-vuejs/tree/tema4-1)
+    - [4-2 Plantilla HTML](https://github.com/tanrax/workshop-flask-with-vuejs/tree/tema4-2)
+    - [4-3 Vue-resource: Peticiones desde VueJS](https://github.com/tanrax/workshop-flask-with-vuejs/tree/tema4-3)
+    - [4-4 Guardamos un dato nuevo](https://github.com/tanrax/workshop-flask-with-vuejs/tree/tema4-4)
+    - [4-5 Segunda página y rutas con vue-router](https://github.com/tanrax/workshop-flask-with-vuejs/tree/tema4-5)
+    - [4-6 Compilamos e integramos con Flask](https://github.com/tanrax/workshop-flask-with-vuejs/tree/tema4-6)
+    - [4-7 Finalizamos el proyecto](https://github.com/tanrax/workshop-flask-with-vuejs/tree/tema4-7)
 
 ## Necesitaremos
 
