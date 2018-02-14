@@ -1,29 +1,31 @@
 # Taller de API Rest con Flask y VueJS en armonia
 
-## Tema 3 - Paso 5
+## Tema 4 - Paso 1
 
 ### 🎈Checkpoint🎈
 
 ```bash
-git checkout tema3-5
+git checkout tema4-1
 ```
 
 ### Descripción
 
-Terminamos de definir todos los esquemas y creamos un simple CRUD de noticias.
+Conocemos a VueJS y creamos nuestro proyecto Vue-cli
 
 ### Peticiones
 
-Todas (ver master)
-
 ```bash
-git checkout master
+yarn global add @vue/cli
+yarn global add @vue/cli-init
+vue init webpack frontend
+cd frontend
+npm run dev
 ```
 
 ### Siguiente
 
-[Tema 4 Paso 1](https://github.com/tanrax/workshop-flask-with-vuejs/tree/tema4-1)
+[Tema 4 Paso 2](https://github.com/tanrax/workshop-flask-with-vuejs/tree/tema4-2)
 
 ### Anterior
 
-[Tema 3 Paso 4](https://github.com/tanrax/workshop-flask-with-vuejs/tree/tema3-4)
+[Tema 3 Paso 5](https://github.com/tanrax/workshop-flask-with-vuejs/tree/tema3-5)
