@@ -7,11 +7,11 @@
     - [1-1 Hola Flask](https://github.com/tanrax/workshop-flask-with-vuejs/tree/tema1-1)
     - [1-2 Hola API Rest](https://github.com/tanrax/workshop-flask-with-vuejs/tree/tema1-2)
     - [1-3 Preparamos proyecto](https://github.com/tanrax/workshop-flask-with-vuejs/tree/tema1-3)
-- Tema 2: Integramos API Rest
+- Tema 2: API Rest
     - [2-1 Hola Flask-restplus](https://github.com/tanrax/workshop-flask-with-vuejs/tree/tema2-1)
     - [2-2 Primeras llamadas](https://github.com/tanrax/workshop-flask-with-vuejs/tree/tema2-2)
     - [2-3 Completamos las peticiones](https://github.com/tanrax/workshop-flask-with-vuejs/tree/tema2-3)
-- Tema 3: Integramos base de datos
+- Tema 3: Base de datos
     - [3-1 ORM con SQLAlchemy](https://github.com/tanrax/workshop-flask-with-vuejs/tree/tema3-1)
     - [3-2 Migraciones](https://github.com/tanrax/workshop-flask-with-vuejs/tree/tema3-2)
     - [3-3 Generando información para desarrollo](https://github.com/tanrax/workshop-flask-with-vuejs/tree/tema3-3)
