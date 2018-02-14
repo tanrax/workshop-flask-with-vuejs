@@ -3,7 +3,7 @@
 ![Flask y Vuejs](flaskyvuejs.jpg)
 
 ## Indice
-- Tema 1: Conocemos Flask
+- Tema 1: Flask
     - [1-1 Hola Flask](https://github.com/tanrax/workshop-flask-with-vuejs/tree/tema1-1)
     - [1-2 Hola API Rest](https://github.com/tanrax/workshop-flask-with-vuejs/tree/tema1-2)
     - [1-3 Preparamos proyecto](https://github.com/tanrax/workshop-flask-with-vuejs/tree/tema1-3)
