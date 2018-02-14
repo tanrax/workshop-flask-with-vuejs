@@ -55,6 +55,14 @@
 
 ### Instalación
 
+Si estas en Debian/Ubuntu, antes necesitarás.
+
+```bash
+sudo apt-get install python3-venv
+```
+
+¡Ahora sí!
+
 ```bash
 python3 -m venv
 source venv/bin/activate
