@@ -1,74 +1,58 @@
 # Taller de API Rest con Flask y VueJS en armonia
 
-## Tema 3 - Paso 3
+## Tema 3 - Paso 4
 
 ### 🎈Checkpoint🎈
 
 ```bash
-git checkout tema3-3
+git checkout tema3-4
 ```
 
 ### Descripción
 
-Incluimos un script para generar información falsa para un desarrollo.
+Convertimos nuestras consultas a la base de datos en JSON.
 
 ### Peticiones
 
 ```python
-from werkzeug.security import generate_password_hash
-from models import db, User, Notice, Comment
-from faker import Factory
-from random import randint
+from flask_marshmallow import Marshmallow
+ma = Marshmallow(app)
 
-# Spanish
-fake = Factory.create('es_ES')
+class UserSchema(ma.Schema):
+    class Meta:
+        # Fields to expose
+        fields = ('username', 'mail')
 
-# Reload tables
-db.drop_all()
-db.create_all()
 
-# Make 100 fake users
-for num in range(100):
-    profile = fake.simple_profile()
-    username = profile['username']
-    mail = profile['mail']
-    password = generate_password_hash('123')
-    # Save in database
-    my_user = User(username=username, mail=mail, password=password)
-    db.session.add(my_user)
+user_schema = UserSchema()
+users_schema = UserSchema(many=True)
 
-print('Users created')
 
-# Make 1000 fake news
-for num in range(1000):
-    title = fake.sentence()
-    url = fake.uri()
-    user_id = randint(1, 100)
-    # Save in database
-    my_notice = Notice(title=title, url=url, user_id=user_id)
-    db.session.add(my_notice)
+@api.route(PRE_URL + 'user')
+class UserList(Resource):
 
-print('News created')
+    def get(self):
+        all_users = User.query.all()
+        return users_schema.jsonify(all_users)
 
-# Make 10000 fake comments
-for num in range(10000):
-    text = fake.text()
-    notice_id = randint(1, 1000)
-    user_id = randint(1, 100)
-    # Save in database
-    my_comment = Comment(text=text, notice_id=notice_id, user_id=user_id)
-    db.session.add(my_comment)
 
-print('Comments created')
+@api.route(PRE_URL + 'user/<int:id>')
+class UserSingle(Resource):
 
-# Save
-db.session.commit()
+    def get(self, id):
+        my_user = User.query.get(id)
+        if my_user:
+            return user_schema.jsonify(my_user)
+        else:
+            return {'message': 'No existe el usuario'}, 400
 ```
 
-Integrando con flask-script
+```python
+http GET :5000/api/v1/user/2
+```
 
 ```python
-python3 models.py fake_data
+http GET :5000/api/v1/user
 ```
 
 ### Siguiente
