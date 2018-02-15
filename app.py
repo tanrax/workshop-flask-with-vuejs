@@ -11,6 +11,7 @@ from flask_restplus import Resource, Api
 from flask_sqlalchemy import SQLAlchemy
 from models import User, Notice, Comment
 from flask_marshmallow import Marshmallow
+from flask_cors import CORS
 
 # =========================
 # Extensions initialization
@@ -28,6 +29,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URI')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 PRE_URL = '/api/v1/'
+CORS(app)
 ma = Marshmallow(app)
 api = Api(app)
 db = SQLAlchemy(app)
