@@ -22,4 +22,4 @@ Ninguna
 
 ### Anterior
 
-[Tema 4 Paso 1](https://github.com/tanrax/workshop-flask-with-vuejs/tree/tema5-1)
+[Tema 4 Paso 1](https://github.com/tanrax/workshop-flask-with-vuejs/tree/tema4-1)
