@@ -8,3 +8,4 @@ python-dotenv
 Flask-JWT
 Flask-marshmallow
 marshmallow-sqlalchemy
+flask-cors

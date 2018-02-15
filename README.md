@@ -53,6 +53,7 @@
 - **Flask-restplus**: Nos ayuda con las peticiones y autodocumentación
 - **Flask-JWT**: Identificación básica.
 - **Flask-marshmallow**: Convertirá los objetos ORM en JSON.
+- **Flask-CORS**: Nos permitirá peticiones desde el exterior.
 
 ### Herramientas de desarrollo
 
