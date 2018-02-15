@@ -1,17 +1,19 @@
 <template>
   <div class="cover">
     <div class="container">
-      <div class="columns is-desktop">
-          <div class="column is-one-third">
+      <div class="columns is-multiline">
+          <div v-for="notice in news" :key="notice.id" class="column is-one-third">
              <div class="card">
-              <div class="card-content">
-                <p class="title">
-                  “There are two hard things in computer science: cache invalidation, naming things, and off-by-one errors.”
-                </p>
-                <p class="subtitle">
-                  Jeff Atwood
-                </p>
-              </div>
+                <a :href="notice.url">
+                  <div class="card-content">
+                    <p class="title">
+                        {{ notice.title }}
+                    </p>
+                    <p class="subtitle">
+                        {{ notice.url }}
+                    </p>
+                  </div>
+                </a>
               <footer class="card-footer">
                 <p class="card-footer-item">
                   <span>
@@ -32,12 +34,21 @@
 </template>
 
 <script>
+import Vue from 'vue'
+
 export default {
   name: 'Cover',
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App'
+      news: []
     }
+  },
+  mounted () {
+    Vue.http.get('http://localhost:5000/api/v1/notice').then(response => {
+      this.news = response.body
+    }, response => {
+      // error callback
+    })
   }
 }
 </script>
