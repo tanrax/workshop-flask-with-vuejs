@@ -1,6 +1,7 @@
 <template>
   <div class="cover">
     <div class="container">
+      <!-- Links -->
       <div class="columns is-multiline">
           <div v-for="notice in news" :key="notice.id" class="column is-one-third">
              <div class="card">
@@ -17,18 +18,30 @@
               <footer class="card-footer">
                 <p class="card-footer-item">
                   <span>
-                    View on <a href="https://twitter.com/codinghorror/status/506010907021828096">Twitter</a>
+                    <i class="fas fa-arrow-up"></i>
                   </span>
                 </p>
                 <p class="card-footer-item">
                   <span>
-                    Share on <a href="#">Facebook</a>
+                    <i class="fas fa-arrow-down"></i>
+                  </span>
+                </p>
+                <p class="card-footer-item">
+                  <span>
+                      Comentarios
                   </span>
                 </p>
               </footer>
             </div>
           </div>
         </div>
+        <!-- End Links -->
+        <!-- Paginator -->
+        <nav class="pagination" role="navigation" aria-label="pagination">
+          <a v-if="pag != 1"  @click="updatePag(pag - 1)" class="pagination-previous">Anterior</a>
+          <a class="pagination-next" @click="updatePag(pag + 1)">Siguiente</a>
+        </nav>
+        <!-- End Paginator -->
       </div>
     </div>
 </template>
@@ -40,15 +53,26 @@ export default {
   name: 'Cover',
   data () {
     return {
-      news: []
+      news: [],
+      pag: 1
     }
   },
   mounted () {
-    Vue.http.get('http://localhost:5000/api/v1/notice').then(response => {
+    Vue.http.get(`http://localhost:5000/api/v1/notice/pag/${this.pag}`).then(response => {
       this.news = response.body
     }, response => {
       // error callback
     })
+  },
+  methods: {
+    updatePag: function (pag) {
+      this.pag = pag
+      Vue.http.get(`http://localhost:5000/api/v1/notice/pag/${this.pag}`).then(response => {
+        this.news = response.body
+      }, response => {
+        // error callback
+      })
+    }
   }
 }
 </script>

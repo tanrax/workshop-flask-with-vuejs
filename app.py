@@ -23,6 +23,7 @@ app = Flask(__name__)
 # =========================
 # Variables
 # =========================
+MAX_NEWS = 6
 app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
 app.config['DEBUG'] = True if os.environ.get('DEBUG') == 'True' else False
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URI')
@@ -161,6 +162,18 @@ class NoticeList(Resource):
             db.session.rollback()
             return {'message': 'No se ha podido guardar la información'}, 500
         return {'message': 'ok'}, 200
+
+
+@api.route(PRE_URL + 'notice/pag/<int:pag>')
+class NoticeListPag(Resource):
+
+    def get(self, pag):
+        # Calculamos paginador
+        start = ((pag - 1) * MAX_NEWS)
+        end = pag * MAX_NEWS
+        # Realizamos busqueda
+        my_news = Notice.query.slice(start, end)
+        return news_schema.jsonify(my_news)
 
 
 @api.route(PRE_URL + 'notice/<int:id>')
