@@ -1,6 +1,6 @@
 # Taller de API Rest con Flask y VueJS en armonia
 
-1# Tema 4 - Paso 3
+## Tema 4 - Paso 3
 
 ### 🎈Checkpoint🎈
 
