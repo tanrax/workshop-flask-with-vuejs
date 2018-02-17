@@ -105,23 +105,23 @@ http GET localhost:5000/api/v1/notice/{id}/comments
 ### POST
 
 ```bash
-http GET localhost:5000/api/v1/notice
+http POST localhost:5000/api/v1/notice
 ```
 
 ```bash
-http GET localhost:5000/api/v1/notice/{id}/comments
+http POST localhost:5000/api/v1/notice/{id}/comments
 ```
 
 ### PATCH
 
 ```bash
-http GET localhost:5000/api/v1/notice/{id}
+http PATCH localhost:5000/api/v1/notice/{id}
 ```
 
 ### DELETE
 
 ```bash
-http GET localhost:5000/api/v1/notice/{id}
+http DELETE localhost:5000/api/v1/notice/{id}
 ```
 
 ## ¿Empezamos?
