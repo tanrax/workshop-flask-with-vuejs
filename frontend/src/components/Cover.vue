@@ -81,7 +81,8 @@ export default {
       pag: 1,
       showAddForm: false,
       title: '',
-      url: ''
+      url: '',
+      comments: []
     }
   },
   mounted () {
@@ -106,6 +107,13 @@ export default {
         this.updatePag(this.pag)
         // Oculto el formulario
         this.showAddForm = false
+      }, response => {
+        // error callback
+      })
+    },
+    showComments: function (id) {
+      Vue.http.get(`http://localhost:5000/api/v1/notice/${id}/comments`).then(response => {
+        this.comments = response.body
       }, response => {
         // error callback
       })

@@ -172,7 +172,9 @@ class NoticeListPag(Resource):
         start = ((pag - 1) * MAX_NEWS)
         end = pag * MAX_NEWS
         # Realizamos busqueda
-        my_news = Notice.query.order_by(Notice.created_at.desc()).slice(start, end)
+        my_news = Notice.query.order_by(
+            Notice.created_at.desc()).slice(
+            start, end)
         return news_schema.jsonify(my_news)
 
 
