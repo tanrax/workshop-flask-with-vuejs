@@ -26,6 +26,8 @@
     - [4-6 Compilamos e integramos con Flask](https://github.com/tanrax/workshop-flask-with-vuejs/tree/tema4-6)
     - [4-7 Finalizamos el proyecto](https://github.com/tanrax/workshop-flask-with-vuejs/tree/tema4-7)
 
+## Objetivo
+![screenshot](screenshot.png)
 ## Necesitaremos
 
 - Portátil, y tuyo.
