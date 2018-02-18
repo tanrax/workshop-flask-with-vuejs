@@ -6,7 +6,7 @@
 import os
 from os.path import join, dirname
 from dotenv import load_dotenv
-from flask import Flask, request
+from flask import Flask, request, render_template
 from flask_restplus import Resource, Api
 from flask_sqlalchemy import SQLAlchemy
 from models import User, Notice, Comment

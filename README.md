@@ -1,157 +1,78 @@
 # Taller de API Rest con Flask y VueJS en armonia
 
-## Tema 4 - Paso 5
+## Tema 4 - Paso 6
 
 ### 🎈Checkpoint🎈
 
 ```bash
-git checkout tema4-5
+git checkout tema4-6
 ```
 
 ### Descripción
 
-Mostramos los comentarios usando un nuevo componente
+Compilamos VueJS y lo integramos con Flask
 
 ### Peticiones
 
-#### Un componente dentro de otro
+Primero compilamos VueJS
 
-Nos aseguramos que en nuestro esquema de noticias tenemos *id*.
+```bash
+npm run build
+```
+
+Nos creará una carpeta llamada **dist**.
+
+Copiamos *index.html* dentro de una carpeta llamada *templates*, y *static* lo copiamos a la raíz de nuestro proyecto.
+
+Solo nos queda servir los nuevos archivos. Creamos un archivo llamado **web.py**. Y dentro pegamos.
 
 ```python
-# Notice
-class NoticeSchema(ma.Schema):
-    class Meta:
-        # Fields to expose
-        fields = ('id', 'title', 'url', 'user_id', '_links')
+# -*- coding: utf-8 -*-
 
-    _links = ma.Hyperlinks({
-        'comments': ma.URLFor('comments', id='<id>'),
-        'user': ma.URLFor('user_single', id='<user_id>')
-    })
+# =========================
+# Librarys
+# =========================
+from flask import Flask, render_template
+
+# =========================
+# Extensions initialization
+# =========================
+app = Flask(__name__)
+
+
+@app.route('/')
+def index():
+    return render_template('index.html')
+
+
+if __name__ == "__main__":
+    app.run(host='0.0.0.0', port=8000)
 ```
 
-Creamos un nuevo componente, llamado *Comment*.
+Lo ejecutamos.
 
-```html
-<template>
-  <div class="comments">
-    Soy un comentario!
-  </div>
-</template>
-
-<script>
-import Vue from 'vue'
-
-export default {
-  name: 'Comment',
-  data () {
-    return {
-    }
-  }
-}
-</script>
-
-<style scoped>
-</style>
+```bash
+python3 web.py
 ```
 
-Lo importamos dentro de nuestro Componente Cover.
+Y no olvidemos de mantener levando el API.
 
-```html
-import Comment from '@/components/Comment'
-
-export default {
-  name: 'Cover',
-  components: {
-    'comments': Comment
-  },
-  ...
+```bash
+python3 app.py
 ```
 
-Ahora ya podemos añadir nuestro componente como si fuera una etiqueta nueva.
+En nuestro navegador favorito, abrimos una pesataña con la siguiente dirección.
 
-```html
-<comments></comments>
+```bash
+localhost:8000
 ```
 
-#### Mostrando u ocultado los comentarios
-
-```html
-<a @click="comments = notice.id" class="card-footer-item">
-    <span>
-        Comentarios
-    </span>
-</a>
-</footer>
-</div>
-<comments v-if="comments == notice.id"></comments>
-```
-
-```javascript
-...
-  data () {
-    return {
-      news: [],
-      pag: 1,
-      showAddForm: false,
-      title: '',
-      url: '',
-      comments: 0
-    }
-  },
-...
-```
-
-#### Renderizando los comentarios de cada noticia
-
-Le damos al componente la *id* de la noticia que debe obtener los comentarios. Sería más correcto dar la *url* de comentarios, pero me parece más claro para entender el funcionamiento.
-
-```html
-<comments v-if="comments == notice.id" :id="notice.id"></comments>
-```
-
-Y lo recogemos.
-
-```javascript
-import Vue from 'vue'
-
-export default {
-  name: 'Comment',
-  props: ['id'],
-  data () {
-    return {
-      comments: []
-    }
-  },
-  mounted: function () {
-    Vue.http.get(`http://localhost:5000/api/v1/notice/${this.id}/comments`).then(response => {
-      this.comments = response.body
-    }, response => {
-      // error callback
-    })
-  }
-}
-```
-
-Mostramos los resultados en el componente.
-
-```html
-<template>
-  <div class="comments">
-    <article v-for="comment in comments" :key="comment.id" class="message">
-      <div class="message-body">
-        {{ comment.text }}
-      </div>
-    </article>
-  </div>
-</template>
-```
+Si has llegado hasta aquí, y todo ha funcionado correctamente, solo me queda felicitarte: acabas de crear un API en Flask y tienes un frontend moderno en VueJS totalmente SPA.
 
 ### Siguiente
 
-[Tema 4 Paso 6](https://github.com/tanrax/workshop-flask-with-vuejs/tree/tema4-6)
+[Tema 4 Paso 7](https://github.com/tanrax/workshop-flask-with-vuejs/tree/tema4-7)
 
 ### Anterior
 
-[Tema 4 Paso 4](https://github.com/tanrax/workshop-flask-with-vuejs/tree/tema4-4)
+[Tema 4 Paso 5](https://github.com/tanrax/workshop-flask-with-vuejs/tree/tema4-5)
