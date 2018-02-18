@@ -18,9 +18,8 @@ Daremos los últimos detalles estéticos.
 
 [Tema 4 Paso 6](https://github.com/tanrax/workshop-flask-with-vuejs/tree/tema4-6)
 
-Game over
-
 ---
+Me despido con una cita:
 
 *La mayoría de los buenos programadores programan no porque esperan que les pagen o que el público los adore, sino porque programar es divertido.*
 
