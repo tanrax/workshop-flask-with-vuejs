@@ -151,7 +151,7 @@ $color-rosa-claro: #c15691
 
 button.plus
   display: block
-  margin-left: auto
+  margin: 0 auto
 .card
   .card-content
     .title, .subtitle

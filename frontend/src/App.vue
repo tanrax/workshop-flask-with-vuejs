@@ -31,4 +31,5 @@ $color-rosa-oscuro: #7c1242
 
 .card-content
   min-height: 16rem
+
 </style>
