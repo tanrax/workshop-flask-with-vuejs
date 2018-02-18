@@ -22,6 +22,6 @@ Game over
 
 ---
 
-* «La mayoría de los buenos programadores programan no porque esperan que les pagen o que el público los adore, sino porque programar es divertido.» *
+*La mayoría de los buenos programadores programan no porque esperan que les pagen o que el público los adore, sino porque programar es divertido.*
 
 -Linus Torvalds
