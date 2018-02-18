@@ -61,13 +61,13 @@ Y no olvidemos de mantener levando el API.
 python3 app.py
 ```
 
-En nuestro navegador favorito, abrimos una pesataña con la siguiente dirección.
+En nuestro navegador favorito, abrimos una pestaña con la siguiente dirección.
 
 ```bash
 localhost:8000
 ```
 
-Si has llegado hasta aquí, y todo ha funcionado correctamente, solo me queda felicitarte: acabas de crear un API en Flask y tienes un frontend moderno en VueJS totalmente SPA.
+Si has llegado hasta aquí, y todo ha funcionado correctamente, solo me queda felicitarte: acabas de crear un API en Flask fácil de mantener con un frontend moderno en VueJS 100% SPA.
 
 ### Siguiente
 
