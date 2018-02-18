@@ -127,5 +127,8 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="sass" scoped>
+$color-verde-oscuro: #08534E
+.cover
+  background: $color-verde-oscuro
 </style>

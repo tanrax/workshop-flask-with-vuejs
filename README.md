@@ -14,6 +14,20 @@ Daremos los últimos detalles estéticos.
 
 ### Peticiones
 
+#### Añadimos SASS
+
+```bash
+npm install --save node-sass sass-loader
+```
+
+```sass
+<style lang="sass" scoped>
+$color-verde-oscuro: #08534E
+.cover
+  background: $color-verde-oscuro
+</style>
+```
+
 ### Anterior
 
 [Tema 4 Paso 6](https://github.com/tanrax/workshop-flask-with-vuejs/tree/tema4-6)
