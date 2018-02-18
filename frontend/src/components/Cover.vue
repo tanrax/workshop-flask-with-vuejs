@@ -2,7 +2,7 @@
   <div class="cover">
     <div class="container">
       <!-- Add notice -->
-      <button @click="showAddForm = !showAddForm" class="button is-primary">
+      <button @click="showAddForm = !showAddForm" class="button is-primary plus">
         <i class="fas fa-plus"></i>
       </button>
       <section v-if="showAddForm" class="section">
@@ -26,7 +26,7 @@
       <!-- Links -->
       <section class="section">
         <div class="columns is-multiline">
-            <div v-for="notice in news" :key="notice.id" class="column is-one-third">
+          <div v-for="notice in news" :key="notice.id" class="column is-one-third" v-bind:class="{'is-12': comments == notice.id}">
                <div class="card">
                   <a :href="notice.url">
                     <div class="card-content">
@@ -49,7 +49,7 @@
                       <i class="fas fa-arrow-down"></i>
                     </span>
                   </p>
-                  <a @click="comments = notice.id" class="card-footer-item">
+                  <a @click="comments != notice.id ? comments = notice.id : comments = 0" v-bind:class="{'active': comments == notice.id}" class="card-footer-item">
                     <span>
                         Comentarios
                     </span>
@@ -62,7 +62,7 @@
         </section>
         <!-- End Links -->
         <!-- Paginator -->
-        <nav class="pagination" role="navigation" aria-label="pagination">
+        <nav class="pagination section is-centered buttons has-addons" role="navigation" aria-label="pagination">
           <a v-if="pag != 1"  @click="updatePag(pag - 1)" class="pagination-previous">Anterior</a>
           <a class="pagination-next" @click="updatePag(pag + 1)">Siguiente</a>
         </nav>
@@ -95,9 +95,17 @@ export default {
   },
   methods: {
     updatePag: function (pag) {
+      // Carga nueva información
       this.pag = pag
       Vue.http.get(`http://localhost:5000/api/v1/notice/pag/${this.pag}`).then(response => {
         this.news = response.body
+        this.$nextTick(function () {
+          // De forma aleatoria cambiamos los fondos de las tarjetas
+          let cards = document.querySelectorAll('.card')
+          for (let card of cards) {
+            card.classList.add('fondo' + numeroAleatorioEntre(1, 8))
+          }
+        })
       }, response => {
         // error callback
       })
@@ -112,6 +120,9 @@ export default {
         this.updatePag(this.pag)
         // Oculto el formulario
         this.showAddForm = false
+        // Limpiamos las variables
+        this.title = ''
+        this.url = ''
       }, response => {
         // error callback
       })
@@ -125,10 +136,56 @@ export default {
     }
   }
 }
+
+function numeroAleatorioEntre (iniMin, iniMax) {
+  return Math.floor(Math.random() * (iniMax - iniMin + 1) + iniMin)
+}
 </script>
 
 <style lang="sass" scoped>
-$color-verde-oscuro: #08534E
-.cover
-  background: $color-verde-oscuro
+$color-rosa-medio: #c91671
+$color-rosa-claro: #c15691
+
+.column
+  transition: 1s all
+
+button.plus
+  display: block
+  margin-left: auto
+.card
+  .card-content
+    .title, .subtitle
+      color: white
+  .card-footer
+    span
+      color: white
+  a.active
+    background-color: white
+    span
+      background-color: white
+      color: $color-rosa-medio
+.pagination
+  a
+    background-color: $color-rosa-medio
+    color: white
+    &:hover
+      background-color: $color-rosa-claro
+
+.fondo1
+  background-color: #08534E
+.fondo2
+  background-color: #92c6bf
+.fondo3
+  background-color: #4d3250
+.fondo4
+  background-color: #aba8c6
+.fondo5
+  background-color: #93733a
+.fondo6
+  background-color: #c15691
+.fondo7
+  background-color: #c91671
+.fondo8
+  background-color: #7c1242
+
 </style>

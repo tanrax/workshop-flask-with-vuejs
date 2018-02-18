@@ -29,5 +29,16 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="sass" scoped>
+
+$color-rosa-medio: #c91671
+
+.message
+  .message-body
+    background: white
+    border-color: $color-rosa-medio
+
+.message:not(:last-child)
+  margin-bottom: .2rem
+
 </style>
