@@ -1,78 +1,27 @@
 # Taller de API Rest con Flask y VueJS en armonia
 
-## Tema 4 - Paso 6
+## Tema 4 - Paso 7
 
 ### 🎈Checkpoint🎈
 
 ```bash
-git checkout tema4-6
+git checkout tema4-7
 ```
 
 ### Descripción
 
-Compilamos VueJS y lo integramos con Flask
+Daremos los últimos detalles estéticos.
 
 ### Peticiones
 
-Primero compilamos VueJS
-
-```bash
-npm run build
-```
-
-Nos creará una carpeta llamada **dist**.
-
-Copiamos *index.html* dentro de una carpeta llamada *templates*, y *static* lo copiamos a la raíz de nuestro proyecto.
-
-Solo nos queda servir los nuevos archivos. Creamos un archivo llamado **web.py**. Y dentro pegamos.
-
-```python
-# -*- coding: utf-8 -*-
-
-# =========================
-# Librarys
-# =========================
-from flask import Flask, render_template
-
-# =========================
-# Extensions initialization
-# =========================
-app = Flask(__name__)
-
-
-@app.route('/')
-def index():
-    return render_template('index.html')
-
-
-if __name__ == "__main__":
-    app.run(host='0.0.0.0', port=8000)
-```
-
-Lo ejecutamos.
-
-```bash
-python3 web.py
-```
-
-Y no olvidemos de mantener levando el API.
-
-```bash
-python3 app.py
-```
-
-En nuestro navegador favorito, abrimos una pestaña con la siguiente dirección.
-
-```bash
-localhost:8000
-```
-
-Si has llegado hasta aquí, y todo ha funcionado correctamente, solo me queda felicitarte: acabas de crear un API en Flask fácil de mantener con un frontend moderno en VueJS 100% SPA.
-
-### Siguiente
-
-[Tema 4 Paso 7](https://github.com/tanrax/workshop-flask-with-vuejs/tree/tema4-7)
-
 ### Anterior
 
-[Tema 4 Paso 5](https://github.com/tanrax/workshop-flask-with-vuejs/tree/tema4-5)
+[Tema 4 Paso 6](https://github.com/tanrax/workshop-flask-with-vuejs/tree/tema4-6)
+
+Game over
+
+---
+
+* «La mayoría de los buenos programadores programan no porque esperan que les pagen o que el público los adore, sino porque programar es divertido.» *
+
+-Linus Torvalds
