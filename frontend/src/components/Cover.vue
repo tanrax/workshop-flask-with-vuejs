@@ -49,13 +49,14 @@
                       <i class="fas fa-arrow-down"></i>
                     </span>
                   </p>
-                  <p class="card-footer-item">
+                  <a @click="comments = notice.id" class="card-footer-item">
                     <span>
                         Comentarios
                     </span>
-                  </p>
+                  </a>
                 </footer>
               </div>
+              <comments v-if="comments == notice.id" :id="notice.id"></comments>
             </div>
           </div>
         </section>
@@ -72,9 +73,13 @@
 
 <script>
 import Vue from 'vue'
+import Comment from '@/components/Comment'
 
 export default {
   name: 'Cover',
+  components: {
+    'comments': Comment
+  },
   data () {
     return {
       news: [],
@@ -82,7 +87,7 @@ export default {
       showAddForm: false,
       title: '',
       url: '',
-      comments: []
+      comments: 0
     }
   },
   mounted () {
