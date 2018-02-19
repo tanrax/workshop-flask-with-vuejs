@@ -27,7 +27,11 @@
     - [4-7 Finalizamos el proyecto](https://github.com/tanrax/workshop-flask-with-vuejs/tree/tema4-7)
 
 ## Objetivo
+
+[Prueba la DEMO](http://flask-api-vuejs.programadorwebvalencia.com/#/)
+
 ![screenshot](screenshot.png)
+
 ## Necesitaremos
 
 - Portátil, y tuyo.
