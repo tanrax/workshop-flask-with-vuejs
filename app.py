@@ -8,8 +8,10 @@ from os.path import join, dirname
 from dotenv import load_dotenv
 from flask import Flask, request
 from flask_restplus import Resource, Api
-from models import db, User, Notice, Comment
+from flask_sqlalchemy import SQLAlchemy
+from models import User, Notice, Comment
 from flask_marshmallow import Marshmallow
+from flask_cors import CORS
 
 # =========================
 # Extensions initialization
@@ -17,17 +19,23 @@ from flask_marshmallow import Marshmallow
 dotenv_path = join(dirname(__file__), 'env')
 load_dotenv(dotenv_path)
 app = Flask(__name__)
-ma = Marshmallow(app)
-api = Api(app)
 
 # =========================
-# Configurations
+# Variables
 # =========================
+MAX_NEWS = 6
 app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
+app.config['DEBUG'] = True if os.environ.get('DEBUG') == 'True' else False
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URI')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-db.init_app(app)
+
 PRE_URL = '/api/v1/'
+CORS(app)
+ma = Marshmallow(app)
+api = Api(app)
+db = SQLAlchemy(app)
+db.init_app(app)
+
 
 # =========================
 # Schemas
@@ -49,7 +57,7 @@ users_schema = UserSchema(many=True)
 class NoticeSchema(ma.Schema):
     class Meta:
         # Fields to expose
-        fields = ('title', 'url', 'user_id', '_links')
+        fields = ('id', 'title', 'url', 'user_id', '_links')
 
     _links = ma.Hyperlinks({
         'comments': ma.URLFor('comments', id='<id>'),
@@ -76,7 +84,6 @@ class CommentSchema(ma.Schema):
 comment_schema = CommentSchema()
 comments_schema = CommentSchema(many=True)
 
-
 # =========================
 # Routes
 # =========================
@@ -87,7 +94,7 @@ comments_schema = CommentSchema(many=True)
 class Signup(Resource):
 
     def post(self):
-        return {'message': 'ok'}
+        return {'message': 'signup'}
 
 
 # Login
@@ -95,7 +102,7 @@ class Signup(Resource):
 class Login(Resource):
 
     def post(self):
-        return {'message': 'ok'}
+        return {'message': 'login'}
 
 
 # Logout
@@ -103,7 +110,7 @@ class Login(Resource):
 class Logout(Resource):
 
     def get(self):
-        return {'message': 'ok'}
+        return {'message': 'logout'}
 
 
 # User
@@ -125,13 +132,14 @@ class UserSingle(Resource):
         else:
             return {'message': 'No existe el usuario'}, 400
 
-
 # Notice
+
+
 @api.route(PRE_URL + 'notice')
 class NoticeList(Resource):
 
     def get(self):
-        my_news = Notice.query.all()
+        my_news = Notice.query.order_by(Notice.created_at.desc()).all()
         return news_schema.jsonify(my_news)
 
     def post(self):
@@ -154,6 +162,20 @@ class NoticeList(Resource):
             db.session.rollback()
             return {'message': 'No se ha podido guardar la información'}, 500
         return {'message': 'ok'}, 200
+
+
+@api.route(PRE_URL + 'notice/pag/<int:pag>')
+class NoticeListPag(Resource):
+
+    def get(self, pag):
+        # Calculamos paginador
+        start = ((pag - 1) * MAX_NEWS)
+        end = pag * MAX_NEWS
+        # Realizamos busqueda
+        my_news = Notice.query.order_by(
+            Notice.created_at.desc()).slice(
+            start, end)
+        return news_schema.jsonify(my_news)
 
 
 @api.route(PRE_URL + 'notice/<int:id>')
@@ -217,8 +239,5 @@ class Comments(Resource):
         return {'hello': 'world'}
 
 
-# =========================
-# Run
-# =========================
-if __name__ == '__main__':
-    app.run(debug=True if os.environ.get('DEBUG') == 'True' else False)
+if __name__ == "__main__":
+    app.run()
