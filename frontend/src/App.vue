@@ -24,6 +24,10 @@ $color-rosa-oscuro: #7c1242
 .logo
   width: 8rem
 
+.subtitle
+  display: flex
+  align-items: center
+
 .button.is-primary
   background-color: $color-rosa-claro
   &:hover

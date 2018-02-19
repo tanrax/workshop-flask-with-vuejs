@@ -27,14 +27,14 @@
       <section class="section">
         <div class="columns is-multiline">
           <div v-for="notice in news" :key="notice.id" class="column is-one-third" v-bind:class="{'is-12': comments == notice.id}">
-               <div class="card">
+               <div class="card nobackground">
                   <a :href="notice.url">
                     <div class="card-content">
                       <p class="title">
                           {{ notice.title }}
                       </p>
                       <p class="subtitle">
-                          {{ notice.url }}
+                          {{ getTopURL(notice.url) }}
                       </p>
                     </div>
                   </a>
@@ -61,12 +61,6 @@
           </div>
         </section>
         <!-- End Links -->
-        <!-- Paginator -->
-        <nav class="pagination section is-centered buttons has-addons" role="navigation" aria-label="pagination">
-          <a v-if="pag != 1"  @click="updatePag(pag - 1)" class="pagination-previous">Anterior</a>
-          <a class="pagination-next" @click="updatePag(pag + 1)">Siguiente</a>
-        </nav>
-        <!-- End Paginator -->
       </div>
     </div>
 </template>
@@ -93,17 +87,26 @@ export default {
   mounted () {
     this.updatePag(this.pag)
   },
+  created: function () {
+    window.addEventListener('scroll', this.handleScroll)
+  },
+  destroyed: function () {
+    window.removeEventListener('scroll', this.handleScroll)
+  },
   methods: {
     updatePag: function (pag) {
       // Carga nueva información
       this.pag = pag
       Vue.http.get(`http://localhost:5000/api/v1/notice/pag/${this.pag}`).then(response => {
-        this.news = response.body
+        for (let notice of response.body) {
+          this.news.push(notice)
+        }
         this.$nextTick(function () {
           // De forma aleatoria cambiamos los fondos de las tarjetas
-          let cards = document.querySelectorAll('.card')
-          for (let card of cards) {
-            card.classList.add('fondo' + numeroAleatorioEntre(1, 8))
+          let cards = document.querySelectorAll('.card.nobackground')
+          for (let index = 0; index < cards.length; index++) {
+            cards[index].classList.add('fondo' + this.numeroAleatorioEntre(1, 8))
+            cards[index].classList.remove('nobackground')
           }
         })
       }, response => {
@@ -133,13 +136,35 @@ export default {
       }, response => {
         // error callback
       })
+    },
+    getTopURL: function (url) {
+      var split1 = url.split('//')[1]
+      var split2 = split1.split('/')[0]
+      var domain = split2
+      if (split2.substring(0, 4) === 'www.') {
+        domain = split2.slice(4)
+      }
+      return domain
+    },
+    numeroAleatorioEntre: function (iniMin, iniMax) {
+      return Math.floor(Math.random() * (iniMax - iniMin + 1) + iniMin)
+    },
+    handleScroll: function (event) {
+      // current position
+      let scrollPosition = window.pageYOffset
+      // window height
+      let windowSize = window.innerHeight
+      // body height
+      let bodyHeight = document.body.offsetHeight
+      let distanceBottom = bodyHeight - windowSize - scrollPosition
+      if (distanceBottom < 350) {
+        this.pag += 1
+        this.updatePag(this.pag)
+      }
     }
   }
 }
 
-function numeroAleatorioEntre (iniMin, iniMax) {
-  return Math.floor(Math.random() * (iniMax - iniMin + 1) + iniMin)
-}
 </script>
 
 <style lang="sass" scoped>
