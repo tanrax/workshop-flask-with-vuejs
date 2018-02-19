@@ -23,8 +23,8 @@
     - [4-3 Vue-resource: Peticiones desde VueJS](https://github.com/tanrax/workshop-flask-with-vuejs/tree/tema4-3)
     - [4-4 Guardamos un dato nuevo](https://github.com/tanrax/workshop-flask-with-vuejs/tree/tema4-4)
     - [4-5 Componente nuevo](https://github.com/tanrax/workshop-flask-with-vuejs/tree/tema4-5)
-    - [4-6 Compilamos e integramos con Flask](https://github.com/tanrax/workshop-flask-with-vuejs/tree/tema4-6)
-    - [4-7 Finalizamos el proyecto](https://github.com/tanrax/workshop-flask-with-vuejs/tree/tema4-7)
+    - [4-6 Compilamos e integramos en Flask](https://github.com/tanrax/workshop-flask-with-vuejs/tree/tema4-6)
+    - [4-7 Detalles estéticos](https://github.com/tanrax/workshop-flask-with-vuejs/tree/tema4-7)
 
 ## Objetivo
 
