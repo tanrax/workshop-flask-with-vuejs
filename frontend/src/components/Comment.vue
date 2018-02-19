@@ -20,7 +20,7 @@ export default {
     }
   },
   mounted: function () {
-    Vue.http.get(`http://localhost:5000/api/v1/notice/${this.id}/comments`).then(response => {
+    Vue.http.get(`http://${process.env.API_URL}/api/v1/notice/${this.id}/comments`).then(response => {
       this.comments = response.body
     }, response => {
       // error callback

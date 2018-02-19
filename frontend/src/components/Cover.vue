@@ -28,30 +28,23 @@
         <div class="columns is-multiline">
           <div v-for="notice in news" :key="notice.id" class="column is-one-third" v-bind:class="{'is-12': comments == notice.id}">
                <div class="card nobackground">
-                  <a :href="notice.url">
-                    <div class="card-content">
-                      <p class="title">
-                          {{ notice.title }}
-                      </p>
-                      <p class="subtitle">
-                          {{ getTopURL(notice.url) }}
-                      </p>
-                    </div>
-                  </a>
+                  <div class="card-content">
+                    <p class="title">
+                        {{ notice.title }}
+                    </p>
+                    <p class="subtitle">
+                        {{ getTopURL(notice.url) }}
+                    </p>
+                  </div>
                 <footer class="card-footer">
-                  <p class="card-footer-item">
+                  <a class="card-footer-item" :href="notice.url">
                     <span>
-                      <i class="fas fa-arrow-up"></i>
+                      Ver más <i class="fas fa-arrow-right"></i>
                     </span>
-                  </p>
-                  <p class="card-footer-item">
-                    <span>
-                      <i class="fas fa-arrow-down"></i>
-                    </span>
-                  </p>
+                  </a>
                   <a @click="comments != notice.id ? comments = notice.id : comments = 0" v-bind:class="{'active': comments == notice.id}" class="card-footer-item">
                     <span>
-                        Comentarios
+                        Comentarios <i class="far fa-comment"></i>
                     </span>
                   </a>
                 </footer>
@@ -97,7 +90,7 @@ export default {
     updatePag: function (pag) {
       // Carga nueva información
       this.pag = pag
-      Vue.http.get(`http://localhost:5000/api/v1/notice/pag/${this.pag}`).then(response => {
+      Vue.http.get(`http://${process.env.API_URL}/api/v1/notice/pag/${this.pag}`).then(response => {
         for (let notice of response.body) {
           this.news.push(notice)
         }
@@ -114,7 +107,7 @@ export default {
       })
     },
     addNotice: function () {
-      Vue.http.post('http://localhost:5000/api/v1/notice', {
+      Vue.http.post(`http://${process.env.API_URL}/api/v1/notice`, {
         title: this.title,
         url: this.url,
         user_id: 1
@@ -131,7 +124,7 @@ export default {
       })
     },
     showComments: function (id) {
-      Vue.http.get(`http://localhost:5000/api/v1/notice/${id}/comments`).then(response => {
+      Vue.http.get(`http://${process.env.API_URL}/api/v1/notice/${id}/comments`).then(response => {
         this.comments = response.body
       }, response => {
         // error callback
@@ -182,13 +175,14 @@ button.plus
     .title, .subtitle
       color: white
   .card-footer
+    background: white
     span
-      color: white
-  a.active
-    background-color: white
-    span
-      background-color: white
       color: $color-rosa-medio
+  a.active
+    background-color: $color-rosa-medio
+    span
+      background-color: $color-rosa-medio
+      color: white
 .pagination
   a
     background-color: $color-rosa-medio
