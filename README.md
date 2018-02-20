@@ -14,6 +14,14 @@ Conocemos las bases de Flask
 
 ### Peticiones
 
+Iniciamos con:
+
+```bash
+python3 app.py
+```
+
+Y abrimos en nuestro navegador.
+
 ```bash
 http://localhost:5000
 ```
