@@ -37,4 +37,4 @@ http DELETE :5000/user
 
 ### Anterior
 
-[Tema 1 Paso 3](https://github.com/tanrax/workshop-flask-with-vuejs/tree/tema2-1)
+[Tema 1 Paso 3](https://github.com/tanrax/workshop-flask-with-vuejs/tree/tema1-3)
