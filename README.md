@@ -15,8 +15,8 @@ Conocemos a VueJS y creamos nuestro proyecto Vue-cli
 ### Peticiones
 
 ```bash
-yarn global add @vue/cli
-yarn global add @vue/cli-init
+npm install -g @vue/cli
+npm install -g @vue/cli-init
 vue init webpack frontend
 cd frontend
 npm run dev
