@@ -13,7 +13,6 @@ from flask import Flask
 # =========================
 dotenv_path = join(dirname(__file__), 'env')
 load_dotenv(dotenv_path)
-app = Flask(__name__)
 
 # =========================
 # Extensions initialization
