@@ -77,10 +77,10 @@ sudo apt-get install python3-venv
 ¡Ahora sí!
 
 ```bash
-python3 -m venv
-source venv/bin/activate
 git clone git@github.com:tanrax/workshop-flask-with-vuejs.git
 cd workshop-flask-with-vuejs
+python3 -m venv
+source venv/bin/activate
 pip3 install -r requirements.txt
 ```
 
