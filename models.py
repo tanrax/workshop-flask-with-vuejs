@@ -25,7 +25,6 @@ migrate = Migrate(app, db)
 manager = Manager(app)
 manager.add_command('db', MigrateCommand)
 
-
 class User(db.Model):
     '''
     Table user
@@ -99,7 +98,6 @@ class Comment(db.Model):
 
     def __repr__(self):
         return '<Comment Table {0}>'.format(self.id)
-
 
 if __name__ == "__main__":
     manager.run()
