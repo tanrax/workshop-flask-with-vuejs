@@ -58,7 +58,7 @@ export default {
 
 Lo importamos dentro de nuestro Componente Cover.
 
-```html
+```javascript
 import Comment from '@/components/Comment'
 
 export default {
