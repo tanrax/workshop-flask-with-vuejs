@@ -14,6 +14,12 @@ Conectamos la base de datos con Flask con Flask-SQLAlchemy
 
 ### Peticiones
 
+Primero creamos nuestra base de datos
+
+```python 
+db.create_all()
+```
+
 Creamos un usuario.
 
 ```python 
@@ -57,9 +63,7 @@ Borramos.
 
 ```python 
 from models import db, User
-my_user = User.query.get(1)
-db.session.delete(my_user)
-db.session.commit()
+User.query.filter_by(id=1).delete()
 ```
 
 Definición de tablas.
@@ -81,9 +85,6 @@ class User(db.Model):
         return '<User Table {0}>'.format(self.username)
 ```
 
-```python 
-db.create_all()
-```
 
 ### Siguiente
 
