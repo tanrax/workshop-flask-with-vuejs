@@ -18,7 +18,7 @@ Ninguna
 
 ### Siguiente
 
-[Tema 1 Paso 4](https://github.com/tanrax/workshop-flask-with-vuejs/tree/tema1-4)
+[Tema 2 Paso 1](https://github.com/tanrax/workshop-flask-with-vuejs/tree/tema2-1)
 
 ### Anterior
 
