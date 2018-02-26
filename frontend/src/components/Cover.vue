@@ -132,7 +132,7 @@ export default {
     },
     getTopURL: function (url) {
       let domain = url
-      if (url.indexOf('//') !== -1) {
+      if (domain.indexOf('//') !== -1) {
         let split1 = url.split('//')[1]
         let split2 = split1.split('/')[0]
         domain = split2
