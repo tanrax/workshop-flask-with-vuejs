@@ -11,6 +11,8 @@ from flask_restplus import Resource, Api
 from flask_sqlalchemy import SQLAlchemy
 from models import User, Notice, Comment
 from flask_marshmallow import Marshmallow
+from flask_jwt import JWT, jwt_required, current_identity
+from werkzeug.security import generate_password_hash, check_password_hash
 
 # =========================
 # Extensions initialization
@@ -33,6 +35,27 @@ api = Api(app)
 db = SQLAlchemy(app)
 db.init_app(app)
 
+
+# =========================
+# Authenticate
+# =========================
+
+def authenticate(username, password):
+    my_user = User.query.filter_by(username=username).first()
+    if my_user and check_password_hash(
+            my_user.password,
+            password):
+            # Login de usuario
+        return my_user
+    else:
+        return None
+
+
+def identity(payload):
+    return User.query.get(payload['identity']).first()
+
+
+jwt = JWT(app, authenticate, identity)
 
 # =========================
 # Schemas
@@ -112,6 +135,7 @@ class Logout(Resource):
 
 # User
 @api.route(PRE_URL + 'user')
+@jwt_required()
 class UserList(Resource):
 
     def get(self):
