@@ -12,6 +12,7 @@ from flask_sqlalchemy import SQLAlchemy
 from models import User, Notice, Comment
 from flask_marshmallow import Marshmallow
 from flask_jwt import JWT, jwt_required, current_identity
+from datetime import timedelta
 from werkzeug.security import generate_password_hash, check_password_hash
 
 # =========================
@@ -24,12 +25,16 @@ app = Flask(__name__)
 # =========================
 # Variables
 # =========================
+PRE_URL = '/api/v1/'
+
 app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
 app.config['DEBUG'] = True if os.environ.get('DEBUG') == 'True' else False
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URI')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.config['JWT_AUTH_USERNAME_KEY'] = 'mail'
+app.config['JWT_EXPIRATION_DELTA'] = timedelta(days=30)
+app.config['JWT_AUTH_URL_RULE'] = PRE_URL + 'auth'
 
-PRE_URL = '/api/v1/'
 ma = Marshmallow(app)
 api = Api(app)
 db = SQLAlchemy(app)
@@ -39,20 +44,19 @@ db.init_app(app)
 # =========================
 # Authenticate
 # =========================
-
-def authenticate(username, password):
-    my_user = User.query.filter_by(username=username).first()
+def authenticate(mail, password):
+    # POST /auth
+    my_user = User.query.filter_by(mail=mail).first()
     if my_user and check_password_hash(
             my_user.password,
             password):
-            # Login de usuario
         return my_user
     else:
         return None
 
 
 def identity(payload):
-    return User.query.get(payload['identity']).first()
+    return User.query.get(payload['identity'])
 
 
 jwt = JWT(app, authenticate, identity)
@@ -135,9 +139,9 @@ class Logout(Resource):
 
 # User
 @api.route(PRE_URL + 'user')
-@jwt_required()
 class UserList(Resource):
 
+    @jwt_required()
     def get(self):
         all_users = User.query.all()
         return users_schema.jsonify(all_users)

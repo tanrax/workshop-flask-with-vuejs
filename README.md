@@ -1,6 +1,6 @@
 # Taller de API Rest con Flask y VueJS en armonia
 
-## Tema 3 - Paso 5
+## Tema 3 - Paso 6
 
 ### 🎈Checkpoint🎈
 
@@ -10,55 +10,37 @@ git checkout tema3-5
 
 ### Descripción
 
-Terminamos de definir todos los esquemas y creamos un simple CRUD de noticias.
+Nos identificamos y protegemos algunas rutas.
 
 ### Peticiones
 
-#### GET
+#### Nos Identificamos
+
+Buscamos un nombre de usuario.
 
 ```bash
-http GET localhost:5000/api/v1/user
+http GET :5000/api/v1/user/1
 ```
+
+Y nos identificamos con el mail y la contraseña *123*.
 
 ```bash
-http GET localhost:5000/api/v1/user/{id}
+http POST :5000/api/v1/auth mail=wserra@hotmail.com password=123
 ```
 
-```bash
-http GET localhost:5000/api/v1/notice
+Nos devolverá un token
+
+``` json
+{
+    "access_token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1MjAxMDE0MzgsImlhdCI6MTUyMDEwMTEzOCwibmJmIjoxNTIwMTAxMTM4LCJpZGVudGl0eSI6MX0.bi_u1j_YqpUZ4uwHv8k5p1Vof1AIfTYPU75dYj7oZEI"
+}
 ```
 
-```bash
-http GET localhost:5000/api/v1/notice/{id}
+Ya tenemos nuestro token para identificarnos. De una ruta que hemos protegido, vamos a dar nuestro token y para que nos devuelva lo que necesitamos.
+
+``` bash
+curl -H "Authorization: JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1MjAxMDE0MzgsImlhdCI6MTUyMDEwMTEzOCwibmJmIjoxNTIwMTAxMTM4LCJpZGVudGl0eSI6MX0.bi_u1j_YqpUZ4uwHv8k5p1Vof1AIfTYPU75dYj7oZEI" localhost:5000/api/v1/user
 ```
-
-```bash
-http GET localhost:5000/api/v1/notice/{id}/comments
-```
-
-#### POST
-
-```bash
-http POST localhost:5000/api/v1/notice
-```
-
-```bash
-http POST localhost:5000/api/v1/notice/{id}/comments
-```
-
-#### PATCH
-
-```bash
-http PATCH localhost:5000/api/v1/notice/{id}
-```
-
-#### DELETE
-
-```bash
-http DELETE localhost:5000/api/v1/notice/{id}
-```
-
-
 
 ### Siguiente
 
@@ -66,4 +48,4 @@ http DELETE localhost:5000/api/v1/notice/{id}
 
 ### Anterior
 
-[Tema 3 Paso 4](https://github.com/tanrax/workshop-flask-with-vuejs/tree/tema3-4)
+[Tema 3 Paso 5](https://github.com/tanrax/workshop-flask-with-vuejs/tree/tema3-5)
