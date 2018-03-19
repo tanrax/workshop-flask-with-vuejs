@@ -131,15 +131,13 @@ export default {
       })
     },
     getTopURL: function (url) {
-      let domain = url
-      if (domain.indexOf('//') !== -1) {
-        let split1 = url.split('//')[1]
-        let split2 = split1.split('/')[0]
-        domain = split2
-        if (split2.substring(0, 4) === 'www.') {
-          domain = split2.slice(4)
-        }
+      let split1 = url.indexOf('//') !== -1 ? url.split('//')[1] : url
+      let split2 = split1.indexOf('/') !== -1 ? split1.split('/')[0] : split1
+      let domain = split2
+      if (domain.substring(0, 4) === 'www.') {
+        domain = split2.slice(4)
       }
+      return domain
     },
     numeroAleatorioEntre: function (iniMin, iniMax) {
       return Math.floor(Math.random() * (iniMax - iniMin + 1) + iniMin)
