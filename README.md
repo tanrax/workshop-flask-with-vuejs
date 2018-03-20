@@ -1,40 +1,23 @@
 # Taller de API Rest con Flask y VueJS en armonia
 
-## Tema 4 - Paso 7
+## Tema 4 - Paso 8
 
 ### 🎈Checkpoint🎈
 
 ```bash
-git checkout tema4-7
+git checkout tema4-8
 ```
 
 ### Descripción
 
-Daremos los últimos detalles estéticos.
+Nos identificamos y registramos.
 
 ### Peticiones
 
-#### Añadimos SASS
+### Siguiente
 
-```bash
-npm install --save node-sass sass-loader
-```
-
-```sass
-<style lang="sass" scoped>
-$color-verde-oscuro: #08534E
-.cover
-  background: $color-verde-oscuro
-</style>
-```
+[Tema 4 Paso 9](https://github.com/tanrax/workshop-flask-with-vuejs/tree/tema4-9)
 
 ### Anterior
 
-[Tema 4 Paso 6](https://github.com/tanrax/workshop-flask-with-vuejs/tree/tema4-6)
-
----
-Me despido con una cita:
-
-*La mayoría de los buenos programadores programan no porque esperan que les pagen o que el público los adore, sino porque programar es divertido.*
-
--Linus Torvalds
+[Tema 4 Paso 7](https://github.com/tanrax/workshop-flask-with-vuejs/tree/tema4-7)

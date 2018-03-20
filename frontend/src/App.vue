@@ -1,5 +1,33 @@
 <template>
   <div id="app">
+    <section class="hero container">
+      <div class="hero-body">
+        <div class="container">
+            <div class="columns">
+                <div class="column">
+                   <div class="title logo">
+                       <h1>
+                            <img src="/static/img/logo.jpg" alt="Play">
+                        </h1>
+                  </div>
+                </div>
+                <div class="column is-half subtitle">
+                    <h2>
+                        Comparte con la comunidad los enlaces más interesantes.
+                    </h2>
+                </div>
+                <div class="column">
+                  <button class="button">
+                    Entrar
+                  </button>
+                  <button class="button">
+                    Registrarse
+                  </button>
+                </div>
+            </div>
+        </div>
+      </div>
+    </section>
     <router-view/>
   </div>
 </template>
