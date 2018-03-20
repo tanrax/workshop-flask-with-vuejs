@@ -1,3 +1,4 @@
 migrations/
 database.sqlite
 Pipfile.lock
+frontend/dist/
