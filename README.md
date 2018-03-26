@@ -55,7 +55,6 @@ my_user = User.query.get(1)
 my_user.username = 'Simba'
 my_user.mail = 'rey@leon.af'
 my_user.password = 'Hakuna matata'
-db.session.add(my_user)
 db.session.commit()
 ```
 
