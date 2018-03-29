@@ -2,21 +2,26 @@
 
 url = "https://pypi.python.org/simple"
 verify_ssl = true
-name = "pypi"
-
-
-[dev-packages]
-
 
 
 [packages]
 
-flask = "*"
-flask-restplus = "*"
-flask-jwt = "*"
-flask-sqlalchemy = "*"
-python-dotenv = "*"
-flask-script = "*"
-flask-migrate = "*"
-faker = "*"
+gunicorn = "*"
+Flask = "*"
+Flask-Cors = "*"
+Flask-JWT = "*"
 flask-marshmallow = "*"
+Flask-Migrate = "*"
+flask-restplus = "*"
+Flask-Script = "*"
+Flask-SQLAlchemy = "*"
+marshmallow = "*"
+marshmallow-sqlalchemy = "*"
+python-dotenv = "*"
+Faker = "*"
+
+
+
+[requires]
+
+python_version = "3.6"
