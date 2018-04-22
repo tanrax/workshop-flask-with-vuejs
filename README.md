@@ -1,4 +1,4 @@
-# Taller de API Rest con Flask y VueJS en armonia
+# Taller de Rest API con Flask y VueJS en dulce armonia
 
 ![Flask y Vuejs](flaskyvuejs.jpg)
 
