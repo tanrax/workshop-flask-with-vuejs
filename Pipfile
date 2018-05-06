@@ -19,6 +19,7 @@ marshmallow = "*"
 marshmallow-sqlalchemy = "*"
 python-dotenv = "*"
 Faker = "*"
+psycopg2-binary = "*"
 
 
 
