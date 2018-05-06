@@ -1,3 +1,5 @@
+gunicorn==19.8.1
+psycopg2-binary==2.7.4
 Faker==0.8.12
 Flask==0.12.2
 Flask-Cors==3.0.3
@@ -10,5 +12,3 @@ Flask-SQLAlchemy==2.3.2
 marshmallow==2.15.0
 marshmallow-sqlalchemy==0.13.2
 python-dotenv==0.8.2
-gunicorn
-psycopg2-binary
