@@ -1,5 +1,4 @@
 gunicorn==19.8.1
-psycopg2==2.7.4
 psycopg2-binary==2.7.4
 Faker==0.8.12
 Flask==0.12.2
@@ -9,7 +8,7 @@ flask-marshmallow==0.8.0
 Flask-Migrate==2.1.1
 flask-restplus==0.10.1
 Flask-Script==2.0.6
-Flask-SQLAlchemy==2.3.2
+Flask-SQLAlchemy==2.2
 marshmallow==2.15.0
 marshmallow-sqlalchemy==0.13.2
 python-dotenv==0.8.2
