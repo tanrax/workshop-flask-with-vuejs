@@ -1,5 +1,5 @@
 gunicorn==19.8.1
-psycopg2-binary==2.7.4
+psycopg2-binary==2.7.2
 Faker==0.8.12
 Flask==0.12.2
 Flask-Cors==3.0.3
