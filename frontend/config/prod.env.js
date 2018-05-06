@@ -1,5 +1,5 @@
 'use strict'
 module.exports = {
   NODE_ENV: '"production"',
-  API_URL: '"flask-api.programadorwebvalencia.com"'
+  API_URL: '"arcalink-api.herokuapp.com"'
 }
