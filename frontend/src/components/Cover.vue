@@ -90,7 +90,7 @@ export default {
     updatePag: function (pag) {
       // Carga nueva información
       this.pag = pag
-      Vue.http.get(`http://${process.env.API_URL}/api/v1/notice/pag/${this.pag}`).then(response => {
+      Vue.http.get(`https://${process.env.API_URL}/api/v1/notice/pag/${this.pag}`).then(response => {
         for (let notice of response.body) {
           this.news.push(notice)
         }
@@ -107,7 +107,7 @@ export default {
       })
     },
     addNotice: function () {
-      Vue.http.post(`http://${process.env.API_URL}/api/v1/notice`, {
+      Vue.http.post(`https://${process.env.API_URL}/api/v1/notice`, {
         title: this.title,
         url: this.url,
         user_id: 1
@@ -124,7 +124,7 @@ export default {
       })
     },
     showComments: function (id) {
-      Vue.http.get(`http://${process.env.API_URL}/api/v1/notice/${id}/comments`).then(response => {
+      Vue.http.get(`https://${process.env.API_URL}/api/v1/notice/${id}/comments`).then(response => {
         this.comments = response.body
       }, response => {
         // error callback
