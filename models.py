@@ -147,7 +147,7 @@ def fake_data():
     print('News created')
 
     # Make 10000 fake comments
-    for num in range(10000):
+    for num in range(5000):
         text = fake.text()
         notice_id = randint(1, 1000)
         user_id = randint(1, 100)
